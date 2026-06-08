@@ -1,0 +1,15 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# BACKEND  ·  Single-stage
+# Imagen base: JDK 21 completo (~600 MB)
+# El JAR ya debe estar compilado (./gradlew bootJar)
+# ─────────────────────────────────────────────────────────────────────────────
+FROM eclipse-temurin:21-jdk
+
+WORKDIR /app
+
+# Copiamos el fat-jar ya construido
+COPY build/libs/OrtizSerranoTP3-0.0.1-SNAPSHOT.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "app.jar"]

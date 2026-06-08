@@ -1,0 +1,38 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# BACKEND  ·  Multi-stage
+#
+# Etapa 1 (builder): JDK 21 + Gradle → compila y genera el fat-jar
+# Etapa 2 (runtime): JRE 21 slim     → solo lo necesario para ejecutar
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── Etapa 1: compilación ──────────────────────────────────────────────────────
+FROM eclipse-temurin:21-jdk AS builder
+
+WORKDIR /app
+
+# Copiamos el wrapper y los archivos de configuración de Gradle primero
+# para aprovechar la caché de capas: si no cambia build.gradle, no se
+# re-descarga el wrapper ni las dependencias.
+COPY gradlew .
+COPY gradle/ gradle/
+COPY build.gradle .
+COPY settings.gradle .
+
+# Damos permisos al wrapper y descargamos dependencias (sin compilar aún)
+RUN chmod +x gradlew && ./gradlew dependencies --no-daemon --quiet 2>&1 | tail -5 || true
+
+# Ahora copiamos el código fuente y compilamos el fat-jar
+COPY src/ src/
+RUN ./gradlew bootJar --no-daemon -x test
+
+# ── Etapa 2: runtime ──────────────────────────────────────────────────────────
+FROM eclipse-temurin:21-jre
+
+WORKDIR /app
+
+# Copiamos SOLO el fat-jar desde la etapa builder
+COPY --from=builder /app/build/libs/OrtizSerranoTP3-0.0.1-SNAPSHOT.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "app.jar"]

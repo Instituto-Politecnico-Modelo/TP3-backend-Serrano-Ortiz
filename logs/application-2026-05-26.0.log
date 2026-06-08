@@ -1,0 +1,727 @@
+2026-05-26 07:55:11.367 [restartedMain] INFO  c.D.O.OrtizSerranoTp3Application - Starting OrtizSerranoTp3Application using Java 21.0.10 with PID 12868 (/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main started by alumno26.ortiz.santiago@ipm.edu.ar in /home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3)
+2026-05-26 07:55:11.372 [restartedMain] DEBUG c.D.O.OrtizSerranoTp3Application - Running with Spring Boot v4.0.5, Spring v7.0.6
+2026-05-26 07:55:11.373 [restartedMain] INFO  c.D.O.OrtizSerranoTp3Application - The following 1 profile is active: "default"
+2026-05-26 07:55:11.464 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-05-26 07:55:11.465 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-05-26 07:55:13.951 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-26 07:55:13.998 [restartedMain] DEBUG o.s.d.r.c.RepositoryConfigurationDelegate - Scanning for JPA repositories in packages com.DecanatoOrtizSerrano.OrtizSerranoTP3.
+2026-05-26 07:55:14.044 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/AdministradorRepository.class]
+2026-05-26 07:55:14.045 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/AuditoriaRepository.class]
+2026-05-26 07:55:14.047 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/AuditorioRepository.class]
+2026-05-26 07:55:14.049 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/ColaInscripcionRepository.class]
+2026-05-26 07:55:14.050 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/DocenteRepository.class]
+2026-05-26 07:55:14.051 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/EstudianteRepository.class]
+2026-05-26 07:55:14.052 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/InscripcionRepository.class]
+2026-05-26 07:55:14.053 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/MateriaRepository.class]
+2026-05-26 07:55:14.053 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/PeriodoRepository.class]
+2026-05-26 07:55:14.055 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/ReservaAuditorioRepository.class]
+2026-05-26 07:55:14.058 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/SolicitudResetPasswordRepository.class]
+2026-05-26 07:55:14.059 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/UsuarioRepository.class]
+2026-05-26 07:55:14.250 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 250 ms. Found 12 JPA repository interfaces.
+2026-05-26 07:55:16.493 [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-05-26 07:55:16.525 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-05-26 07:55:16.525 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-26 07:55:16.614 [restartedMain] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 5145 ms
+2026-05-26 07:55:16.975 [restartedMain] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-26 07:55:17.167 [restartedMain] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.7.Final
+2026-05-26 07:55:18.064 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-26 07:55:18.113 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-26 07:55:18.175 [restartedMain] INFO  c.D.O.OrtizSerranoTp3Application - Starting OrtizSerranoTp3Application using Java 21.0.10 with PID 13438 (/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main started by alumno26.ortiz.santiago@ipm.edu.ar in /home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3)
+2026-05-26 07:55:18.178 [restartedMain] DEBUG c.D.O.OrtizSerranoTp3Application - Running with Spring Boot v4.0.5, Spring v7.0.6
+2026-05-26 07:55:18.179 [restartedMain] INFO  c.D.O.OrtizSerranoTp3Application - The following 1 profile is active: "default"
+2026-05-26 07:55:18.271 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-05-26 07:55:18.271 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-05-26 07:55:18.454 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1520b34
+2026-05-26 07:55:18.458 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-26 07:55:18.590 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-26 07:55:18.646 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/Decanato-Ortiz-Serrano?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.45
+	Default catalog/schema: Decanato-Ortiz-Serrano/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-26 07:55:20.285 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-26 07:55:20.308 [restartedMain] DEBUG o.s.d.r.c.RepositoryConfigurationDelegate - Scanning for JPA repositories in packages com.DecanatoOrtizSerrano.OrtizSerranoTP3.
+2026-05-26 07:55:20.349 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/AdministradorRepository.class]
+2026-05-26 07:55:20.351 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/AuditoriaRepository.class]
+2026-05-26 07:55:20.352 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/AuditorioRepository.class]
+2026-05-26 07:55:20.352 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/ColaInscripcionRepository.class]
+2026-05-26 07:55:20.352 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/DocenteRepository.class]
+2026-05-26 07:55:20.352 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/EstudianteRepository.class]
+2026-05-26 07:55:20.353 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/InscripcionRepository.class]
+2026-05-26 07:55:20.353 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/MateriaRepository.class]
+2026-05-26 07:55:20.354 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/PeriodoRepository.class]
+2026-05-26 07:55:20.355 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/ReservaAuditorioRepository.class]
+2026-05-26 07:55:20.356 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/SolicitudResetPasswordRepository.class]
+2026-05-26 07:55:20.356 [restartedMain] DEBUG o.s.d.r.c.RepositoryComponentProvider - Identified candidate component class: file [/home/Alumno26.ORTIZ.Santiago@ipm.edu.ar/Escritorio/2026/TP3/TP3-docs-Serrano-Ortiz/OrtizSerranoTP3/build/classes/java/main/com/DecanatoOrtizSerrano/OrtizSerranoTP3/repository/UsuarioRepository.class]
+2026-05-26 07:55:20.468 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 156 ms. Found 12 JPA repository interfaces.
+2026-05-26 07:55:20.925 [restartedMain] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-26 07:55:21.252 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-26 07:55:21.325 [restartedMain] DEBUG o.s.d.j.r.c.JpaMetamodelMappingContextFactoryBean - Initializing JpaMetamodelMappingContext…
+2026-05-26 07:55:21.361 [restartedMain] DEBUG o.s.d.j.r.c.JpaMetamodelMappingContextFactoryBean - Finished initializing JpaMetamodelMappingContext
+2026-05-26 07:55:21.435 [restartedMain] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-26 07:55:21.534 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository…
+2026-05-26 07:55:21.610 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Usuario.existsByEmail'
+2026-05-26 07:55:21.662 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Usuario.existsByEmail
+2026-05-26 07:55:21.680 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Usuario.findByEmail'
+2026-05-26 07:55:21.682 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Usuario.findByEmail
+2026-05-26 07:55:21.689 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository.
+2026-05-26 07:55:21.725 [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-05-26 07:55:21.760 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-05-26 07:55:21.761 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-26 07:55:21.833 [restartedMain] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 3560 ms
+2026-05-26 07:55:21.904 [restartedMain] DEBUG c.D.O.s.jwt.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2026-05-26 07:55:21.904 [restartedMain] DEBUG c.D.O.s.jwt.JwtAuthenticationFilter - Filter 'authenticationJwtTokenFilter' configured for use
+2026-05-26 07:55:21.979 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.AuditoriaRepository…
+2026-05-26 07:55:21.993 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query RegistroAuditoria.findUltimoRegistro.count
+2026-05-26 07:55:22.135 [restartedMain] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-26 07:55:22.176 [restartedMain] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.7.Final
+2026-05-26 07:55:22.740 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-26 07:55:22.773 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-26 07:55:22.934 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'RegistroAuditoria.findAllByOrderByIdRegistroAsc'
+2026-05-26 07:55:22.935 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query RegistroAuditoria.findAllByOrderByIdRegistroAsc
+2026-05-26 07:55:22.938 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'RegistroAuditoria.findByEntidadOrderByIdRegistroAsc'
+2026-05-26 07:55:22.938 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query RegistroAuditoria.findByEntidadOrderByIdRegistroAsc
+2026-05-26 07:55:22.940 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'RegistroAuditoria.findByEntidadAndIdEntidadOrderByIdRegistroAsc'
+2026-05-26 07:55:22.940 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query RegistroAuditoria.findByEntidadAndIdEntidadOrderByIdRegistroAsc
+2026-05-26 07:55:22.941 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'RegistroAuditoria.findByIdUsuarioOrderByIdRegistroAsc'
+2026-05-26 07:55:22.942 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query RegistroAuditoria.findByIdUsuarioOrderByIdRegistroAsc
+2026-05-26 07:55:22.943 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'RegistroAuditoria.findByAccionOrderByIdRegistroAsc'
+2026-05-26 07:55:22.944 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query RegistroAuditoria.findByAccionOrderByIdRegistroAsc
+2026-05-26 07:55:22.945 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'RegistroAuditoria.findByTimestampEventoBetweenOrderByIdRegistroAsc'
+2026-05-26 07:55:22.946 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query RegistroAuditoria.findByTimestampEventoBetweenOrderByIdRegistroAsc
+2026-05-26 07:55:22.949 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@31030206
+2026-05-26 07:55:22.950 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.AuditoriaRepository.
+2026-05-26 07:55:22.951 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-26 07:55:22.983 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.AdministradorRepository…
+2026-05-26 07:55:22.988 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.AdministradorRepository.
+2026-05-26 07:55:23.008 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-26 07:55:23.031 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.AuditorioRepository…
+2026-05-26 07:55:23.032 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/Decanato-Ortiz-Serrano?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.45
+	Default catalog/schema: Decanato-Ortiz-Serrano/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-26 07:55:23.033 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Auditorio.findByCapacidadGreaterThanEqual'
+2026-05-26 07:55:23.034 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Auditorio.findByCapacidadGreaterThanEqual
+2026-05-26 07:55:23.035 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Auditorio.findByActivoTrue'
+2026-05-26 07:55:23.036 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Auditorio.findByActivoTrue
+2026-05-26 07:55:23.037 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Auditorio.existsByNombre'
+2026-05-26 07:55:23.039 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Auditorio.existsByNombre
+2026-05-26 07:55:23.040 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Auditorio.findByNombre'
+2026-05-26 07:55:23.041 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Auditorio.findByNombre
+2026-05-26 07:55:23.045 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.AuditorioRepository.
+2026-05-26 07:55:23.092 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.ReservaAuditorioRepository…
+2026-05-26 07:55:23.095 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'ReservaAuditorio.findByAuditorioIdAuditorio'
+2026-05-26 07:55:23.095 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ReservaAuditorio.findByAuditorioIdAuditorio
+2026-05-26 07:55:23.099 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'ReservaAuditorio.findBySolicitanteIdUsuario'
+2026-05-26 07:55:23.100 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ReservaAuditorio.findBySolicitanteIdUsuario
+2026-05-26 07:55:23.101 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'ReservaAuditorio.findByEstado'
+2026-05-26 07:55:23.103 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ReservaAuditorio.findByEstado
+2026-05-26 07:55:23.105 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'ReservaAuditorio.findByFecha'
+2026-05-26 07:55:23.106 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ReservaAuditorio.findByFecha
+2026-05-26 07:55:23.109 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'ReservaAuditorio.findByFechaBetween'
+2026-05-26 07:55:23.110 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ReservaAuditorio.findByFechaBetween
+2026-05-26 07:55:23.112 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ReservaAuditorio.existeSolapamiento.count
+2026-05-26 07:55:23.573 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.ReservaAuditorioRepository.
+2026-05-26 07:55:23.687 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.EstudianteRepository…
+2026-05-26 07:55:23.691 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Estudiante.findMaxLegajoNumero.count
+2026-05-26 07:55:23.926 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Estudiante.existsByLegajo'
+2026-05-26 07:55:23.927 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Estudiante.existsByLegajo
+2026-05-26 07:55:23.930 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.EstudianteRepository.
+2026-05-26 07:55:23.943 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.DocenteRepository…
+2026-05-26 07:55:23.947 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.DocenteRepository.
+2026-05-26 07:55:23.963 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.SolicitudResetPasswordRepository…
+2026-05-26 07:55:23.965 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'SolicitudResetPassword.findByEstadoOrderByFechaSolicitudDesc'
+2026-05-26 07:55:23.966 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query SolicitudResetPassword.findByEstadoOrderByFechaSolicitudDesc
+2026-05-26 07:55:23.967 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'SolicitudResetPassword.existsByEmailAndEstado'
+2026-05-26 07:55:23.968 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query SolicitudResetPassword.existsByEmailAndEstado
+2026-05-26 07:55:23.968 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'SolicitudResetPassword.findAllByOrderByFechaSolicitudDesc'
+2026-05-26 07:55:23.969 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query SolicitudResetPassword.findAllByOrderByFechaSolicitudDesc
+2026-05-26 07:55:23.973 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.SolicitudResetPasswordRepository.
+2026-05-26 07:55:24.076 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-05-26 07:55:24.077 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-05-26 07:55:24.118 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.ColaInscripcionRepository…
+2026-05-26 07:55:24.122 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'ColaInscripcion.existsByEstudianteIdUsuarioAndMateriaIdMateriaAndEstado'
+2026-05-26 07:55:24.123 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.existsByEstudianteIdUsuarioAndMateriaIdMateriaAndEstado
+2026-05-26 07:55:24.127 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.findMaxPosicion.count
+2026-05-26 07:55:24.364 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.countDelante.count
+2026-05-26 07:55:24.369 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.findByEstudianteId.count
+2026-05-26 07:55:24.378 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.findPendientesPorMateriaOrdenados.count
+2026-05-26 07:55:24.386 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.findPrimeroPendiente.count
+2026-05-26 07:55:24.395 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.expirarVencidos.count
+2026-05-26 07:55:24.514 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'ColaInscripcion.findByEstudianteIdUsuarioAndMateriaIdMateria'
+2026-05-26 07:55:24.514 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.findByEstudianteIdUsuarioAndMateriaIdMateria
+2026-05-26 07:55:24.516 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.findExpirados.count
+2026-05-26 07:55:24.521 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.ColaInscripcionRepository.
+2026-05-26 07:55:24.537 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.MateriaRepository…
+2026-05-26 07:55:24.542 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Materia.findByCodigo'
+2026-05-26 07:55:24.542 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Materia.findByCodigo
+2026-05-26 07:55:24.545 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Materia.findByIdForUpdate.count
+2026-05-26 07:55:24.549 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Materia.existsByCodigo'
+2026-05-26 07:55:24.549 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Materia.existsByCodigo
+2026-05-26 07:55:24.551 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Materia.findByCarreraOrTransversales.count
+2026-05-26 07:55:24.566 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.MateriaRepository.
+2026-05-26 07:55:24.583 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.InscripcionRepository…
+2026-05-26 07:55:24.586 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Inscripcion.countCuposOcupados.count
+2026-05-26 07:55:24.596 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Inscripcion.existsByEstudianteIdUsuarioAndMateriaIdMateriaAndEstadoNot'
+2026-05-26 07:55:24.598 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Inscripcion.existsByEstudianteIdUsuarioAndMateriaIdMateriaAndEstadoNot
+2026-05-26 07:55:24.601 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Inscripcion.findByEstudianteIdUsuario'
+2026-05-26 07:55:24.603 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Inscripcion.findByEstudianteIdUsuario
+2026-05-26 07:55:24.604 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Inscripcion.findByMateriaIdMateria'
+2026-05-26 07:55:24.605 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Inscripcion.findByMateriaIdMateria
+2026-05-26 07:55:24.608 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Inscripcion.findByEstudianteIdUsuarioAndMateriaIdMateria'
+2026-05-26 07:55:24.609 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Inscripcion.findByEstudianteIdUsuarioAndMateriaIdMateria
+2026-05-26 07:55:24.616 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.InscripcionRepository.
+2026-05-26 07:55:24.748 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.PeriodoRepository…
+2026-05-26 07:55:24.750 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Periodo.findByActivoTrue'
+2026-05-26 07:55:24.750 [restartedMain] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-26 07:55:24.750 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Periodo.findByActivoTrue
+2026-05-26 07:55:24.751 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Periodo.findByAnio'
+2026-05-26 07:55:24.752 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Periodo.findByAnio
+2026-05-26 07:55:24.755 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.PeriodoRepository.
+2026-05-26 07:55:25.037 [restartedMain] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-26 07:55:25.421 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-05-26 07:55:25.687 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 90 mappings in 'requestMappingHandlerMapping'
+2026-05-26 07:55:25.871 [restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2026-05-26 07:55:25.937 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 2 RequestBodyAdvice, 1 ResponseBodyAdvice
+2026-05-26 07:55:26.005 [restartedMain] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2026-05-26 07:55:26.329 [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-05-26 07:55:26.339 [restartedMain] INFO  c.D.O.OrtizSerranoTp3Application - Started OrtizSerranoTp3Application in 15.712 seconds (process running for 16.63)
+2026-05-26 07:55:26.510 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-26 07:55:26.576 [restartedMain] DEBUG o.s.d.j.r.c.JpaMetamodelMappingContextFactoryBean - Initializing JpaMetamodelMappingContext…
+2026-05-26 07:55:26.599 [restartedMain] DEBUG o.s.d.j.r.c.JpaMetamodelMappingContextFactoryBean - Finished initializing JpaMetamodelMappingContext
+2026-05-26 07:55:26.656 [restartedMain] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-26 07:55:26.724 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository…
+2026-05-26 07:55:26.780 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Usuario.existsByEmail'
+2026-05-26 07:55:26.822 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Usuario.existsByEmail
+2026-05-26 07:55:26.837 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Usuario.findByEmail'
+2026-05-26 07:55:26.838 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Usuario.findByEmail
+2026-05-26 07:55:26.842 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository.
+2026-05-26 07:55:27.016 [restartedMain] DEBUG c.D.O.s.jwt.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2026-05-26 07:55:27.017 [restartedMain] DEBUG c.D.O.s.jwt.JwtAuthenticationFilter - Filter 'authenticationJwtTokenFilter' configured for use
+2026-05-26 07:55:27.072 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.AuditoriaRepository…
+2026-05-26 07:55:27.077 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query RegistroAuditoria.findUltimoRegistro.count
+2026-05-26 07:55:27.624 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-26 07:55:27.626 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-05-26 07:55:27.627 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2026-05-26 07:55:27.627 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2026-05-26 07:55:27.633 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@1d22eab6
+2026-05-26 07:55:27.634 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@66ce1358
+2026-05-26 07:55:27.636 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2026-05-26 07:55:27.637 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 10 ms
+2026-05-26 07:55:27.644 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'RegistroAuditoria.findAllByOrderByIdRegistroAsc'
+2026-05-26 07:55:27.646 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query RegistroAuditoria.findAllByOrderByIdRegistroAsc
+2026-05-26 07:55:27.650 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'RegistroAuditoria.findByEntidadOrderByIdRegistroAsc'
+2026-05-26 07:55:27.651 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query RegistroAuditoria.findByEntidadOrderByIdRegistroAsc
+2026-05-26 07:55:27.653 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'RegistroAuditoria.findByEntidadAndIdEntidadOrderByIdRegistroAsc'
+2026-05-26 07:55:27.654 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query RegistroAuditoria.findByEntidadAndIdEntidadOrderByIdRegistroAsc
+2026-05-26 07:55:27.656 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'RegistroAuditoria.findByIdUsuarioOrderByIdRegistroAsc'
+2026-05-26 07:55:27.658 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query RegistroAuditoria.findByIdUsuarioOrderByIdRegistroAsc
+2026-05-26 07:55:27.660 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'RegistroAuditoria.findByAccionOrderByIdRegistroAsc'
+2026-05-26 07:55:27.661 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query RegistroAuditoria.findByAccionOrderByIdRegistroAsc
+2026-05-26 07:55:27.663 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'RegistroAuditoria.findByTimestampEventoBetweenOrderByIdRegistroAsc'
+2026-05-26 07:55:27.664 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query RegistroAuditoria.findByTimestampEventoBetweenOrderByIdRegistroAsc
+2026-05-26 07:55:27.664 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui.html
+2026-05-26 07:55:27.670 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.AuditoriaRepository.
+2026-05-26 07:55:27.677 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-26 07:55:27.679 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui.html
+2026-05-26 07:55:27.681 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui.html", parameters={}
+2026-05-26 07:55:27.689 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.ui.SwaggerWelcomeWebMvc#redirectToUi(HttpServletRequest)
+2026-05-26 07:55:27.690 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-05-26 07:55:27.690 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🔵 NUEVA PETICIÓN HTTP
+2026-05-26 07:55:27.691 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Método: GET
+2026-05-26 07:55:27.691 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - URI: /swagger-ui.html
+2026-05-26 07:55:27.691 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Query String: null
+2026-05-26 07:55:27.691 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Remote Address: 0:0:0:0:0:0:0:1
+2026-05-26 07:55:27.691 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Session ID: Sin sesión
+2026-05-26 07:55:27.691 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - --- Headers ---
+2026-05-26 07:55:27.692 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Host: localhost:8080
+2026-05-26 07:55:27.693 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Connection: keep-alive
+2026-05-26 07:55:27.693 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua: "Not/A)Brand";v="99", "Chromium";v="148"
+2026-05-26 07:55:27.693 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua-mobile: ?0
+2026-05-26 07:55:27.693 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua-platform: "Linux"
+2026-05-26 07:55:27.695 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Upgrade-Insecure-Requests: 1
+2026-05-26 07:55:27.695 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36
+2026-05-26 07:55:27.695 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+2026-05-26 07:55:27.695 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Site: none
+2026-05-26 07:55:27.695 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Mode: navigate
+2026-05-26 07:55:27.695 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-User: ?1
+2026-05-26 07:55:27.695 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Dest: document
+2026-05-26 07:55:27.695 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Encoding: gzip, deflate, br, zstd
+2026-05-26 07:55:27.696 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Language: es-ES,es;q=0.9
+2026-05-26 07:55:27.697 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Handler: org.springdoc.webmvc.ui.SwaggerWelcomeWebMvc#redirectToUi(HttpServletRequest)
+2026-05-26 07:55:27.698 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-05-26 07:55:27.711 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.AdministradorRepository…
+2026-05-26 07:55:27.715 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.AdministradorRepository.
+2026-05-26 07:55:27.756 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.AuditorioRepository…
+2026-05-26 07:55:27.759 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Auditorio.findByCapacidadGreaterThanEqual'
+2026-05-26 07:55:27.759 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Auditorio.findByCapacidadGreaterThanEqual
+2026-05-26 07:55:27.760 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Auditorio.findByActivoTrue'
+2026-05-26 07:55:27.761 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Auditorio.findByActivoTrue
+2026-05-26 07:55:27.762 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Auditorio.existsByNombre'
+2026-05-26 07:55:27.763 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Auditorio.existsByNombre
+2026-05-26 07:55:27.764 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Auditorio.findByNombre'
+2026-05-26 07:55:27.765 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Auditorio.findByNombre
+2026-05-26 07:55:27.769 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.AuditorioRepository.
+2026-05-26 07:55:27.784 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7] and supported [application/json, application/*+json, application/yaml]
+2026-05-26 07:55:27.787 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Nothing to write: null body
+2026-05-26 07:55:27.790 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-05-26 07:55:27.792 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🟢 RESPUESTA HTTP
+2026-05-26 07:55:27.793 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Status: 302
+2026-05-26 07:55:27.793 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content Type: null
+2026-05-26 07:55:27.793 [http-nio-8080-exec-2] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-05-26 07:55:27.793 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 302 FOUND
+2026-05-26 07:55:27.812 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.ReservaAuditorioRepository…
+2026-05-26 07:55:27.814 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'ReservaAuditorio.findByAuditorioIdAuditorio'
+2026-05-26 07:55:27.815 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ReservaAuditorio.findByAuditorioIdAuditorio
+2026-05-26 07:55:27.816 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'ReservaAuditorio.findBySolicitanteIdUsuario'
+2026-05-26 07:55:27.817 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ReservaAuditorio.findBySolicitanteIdUsuario
+2026-05-26 07:55:27.818 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'ReservaAuditorio.findByEstado'
+2026-05-26 07:55:27.819 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ReservaAuditorio.findByEstado
+2026-05-26 07:55:27.821 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'ReservaAuditorio.findByFecha'
+2026-05-26 07:55:27.821 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ReservaAuditorio.findByFecha
+2026-05-26 07:55:27.823 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'ReservaAuditorio.findByFechaBetween'
+2026-05-26 07:55:27.824 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ReservaAuditorio.findByFechaBetween
+2026-05-26 07:55:27.826 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ReservaAuditorio.existeSolapamiento.count
+2026-05-26 07:55:27.827 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/index.html
+2026-05-26 07:55:27.827 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-26 07:55:27.828 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/index.html
+2026-05-26 07:55:27.828 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/index.html", parameters={}
+2026-05-26 07:55:27.832 [http-nio-8080-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-05-26 07:55:27.835 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-05-26 07:55:27.836 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🔵 NUEVA PETICIÓN HTTP
+2026-05-26 07:55:27.836 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Método: GET
+2026-05-26 07:55:27.836 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - URI: /swagger-ui/index.html
+2026-05-26 07:55:27.836 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Query String: null
+2026-05-26 07:55:27.836 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Remote Address: 0:0:0:0:0:0:0:1
+2026-05-26 07:55:27.836 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Session ID: Sin sesión
+2026-05-26 07:55:27.836 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - --- Headers ---
+2026-05-26 07:55:27.836 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Host: localhost:8080
+2026-05-26 07:55:27.837 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Connection: keep-alive
+2026-05-26 07:55:27.837 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Upgrade-Insecure-Requests: 1
+2026-05-26 07:55:27.837 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36
+2026-05-26 07:55:27.837 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+2026-05-26 07:55:27.837 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Site: none
+2026-05-26 07:55:27.837 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Mode: navigate
+2026-05-26 07:55:27.837 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-User: ?1
+2026-05-26 07:55:27.837 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Dest: document
+2026-05-26 07:55:27.837 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua: "Not/A)Brand";v="99", "Chromium";v="148"
+2026-05-26 07:55:27.837 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua-mobile: ?0
+2026-05-26 07:55:27.838 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua-platform: "Linux"
+2026-05-26 07:55:27.838 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Encoding: gzip, deflate, br, zstd
+2026-05-26 07:55:27.838 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Language: es-ES,es;q=0.9
+2026-05-26 07:55:27.838 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Handler: ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-05-26 07:55:27.838 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-05-26 07:55:27.851 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-05-26 07:55:27.852 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🟢 RESPUESTA HTTP
+2026-05-26 07:55:27.852 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Status: 200
+2026-05-26 07:55:27.852 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content Type: text/html
+2026-05-26 07:55:27.852 [http-nio-8080-exec-3] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-05-26 07:55:27.852 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-05-26 07:55:27.867 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/swagger-ui-standalone-preset.js
+2026-05-26 07:55:27.866 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/swagger-ui-bundle.js
+2026-05-26 07:55:27.867 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/index.css
+2026-05-26 07:55:27.866 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/swagger-ui.css
+2026-05-26 07:55:27.867 [http-nio-8080-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-26 07:55:27.867 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/swagger-ui-standalone-preset.js
+2026-05-26 07:55:27.867 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-ui-standalone-preset.js", parameters={}
+2026-05-26 07:55:27.867 [http-nio-8080-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-26 07:55:27.867 [http-nio-8080-exec-7] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-26 07:55:27.868 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/index.css
+2026-05-26 07:55:27.868 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/index.css", parameters={}
+2026-05-26 07:55:27.869 [http-nio-8080-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-05-26 07:55:27.869 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-05-26 07:55:27.869 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🔵 NUEVA PETICIÓN HTTP
+2026-05-26 07:55:27.869 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Método: GET
+2026-05-26 07:55:27.869 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - URI: /swagger-ui/swagger-ui-standalone-preset.js
+2026-05-26 07:55:27.869 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Query String: null
+2026-05-26 07:55:27.869 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Remote Address: 0:0:0:0:0:0:0:1
+2026-05-26 07:55:27.869 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Session ID: Sin sesión
+2026-05-26 07:55:27.869 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - --- Headers ---
+2026-05-26 07:55:27.867 [http-nio-8080-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-26 07:55:27.870 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/swagger-ui-bundle.js
+2026-05-26 07:55:27.870 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-ui-bundle.js", parameters={}
+2026-05-26 07:55:27.871 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/swagger-initializer.js
+2026-05-26 07:55:27.871 [http-nio-8080-exec-8] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-26 07:55:27.871 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/swagger-initializer.js
+2026-05-26 07:55:27.871 [http-nio-8080-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-05-26 07:55:27.868 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/swagger-ui.css
+2026-05-26 07:55:27.871 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-05-26 07:55:27.871 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-initializer.js", parameters={}
+2026-05-26 07:55:27.871 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🔵 NUEVA PETICIÓN HTTP
+2026-05-26 07:55:27.871 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/swagger-ui.css", parameters={}
+2026-05-26 07:55:27.871 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Host: localhost:8080
+2026-05-26 07:55:27.872 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Método: GET
+2026-05-26 07:55:27.872 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Connection: keep-alive
+2026-05-26 07:55:27.872 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - URI: /swagger-ui/swagger-ui-bundle.js
+2026-05-26 07:55:27.872 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Query String: null
+2026-05-26 07:55:27.872 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua-platform: "Linux"
+2026-05-26 07:55:27.872 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Remote Address: 0:0:0:0:0:0:0:1
+2026-05-26 07:55:27.872 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36
+2026-05-26 07:55:27.872 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Session ID: Sin sesión
+2026-05-26 07:55:27.872 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - --- Headers ---
+2026-05-26 07:55:27.872 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua: "Not/A)Brand";v="99", "Chromium";v="148"
+2026-05-26 07:55:27.872 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Host: localhost:8080
+2026-05-26 07:55:27.872 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua-mobile: ?0
+2026-05-26 07:55:27.872 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Connection: keep-alive
+2026-05-26 07:55:27.872 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept: */*
+2026-05-26 07:55:27.872 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua-platform: "Linux"
+2026-05-26 07:55:27.872 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36
+2026-05-26 07:55:27.872 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua: "Not/A)Brand";v="99", "Chromium";v="148"
+2026-05-26 07:55:27.872 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua-mobile: ?0
+2026-05-26 07:55:27.873 [http-nio-8080-exec-4] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-05-26 07:55:27.873 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-05-26 07:55:27.873 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🔵 NUEVA PETICIÓN HTTP
+2026-05-26 07:55:27.873 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Método: GET
+2026-05-26 07:55:27.873 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - URI: /swagger-ui/swagger-ui.css
+2026-05-26 07:55:27.873 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Query String: null
+2026-05-26 07:55:27.873 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Remote Address: 0:0:0:0:0:0:0:1
+2026-05-26 07:55:27.873 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Session ID: Sin sesión
+2026-05-26 07:55:27.873 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - --- Headers ---
+2026-05-26 07:55:27.873 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Host: localhost:8080
+2026-05-26 07:55:27.873 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Site: same-origin
+2026-05-26 07:55:27.873 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Connection: keep-alive
+2026-05-26 07:55:27.874 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Mode: no-cors
+2026-05-26 07:55:27.874 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua-platform: "Linux"
+2026-05-26 07:55:27.874 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Dest: script
+2026-05-26 07:55:27.874 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36
+2026-05-26 07:55:27.874 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Referer: http://localhost:8080/swagger-ui/index.html
+2026-05-26 07:55:27.874 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua: "Not/A)Brand";v="99", "Chromium";v="148"
+2026-05-26 07:55:27.874 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Encoding: gzip, deflate, br, zstd
+2026-05-26 07:55:27.874 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua-mobile: ?0
+2026-05-26 07:55:27.874 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Language: es-ES,es;q=0.9
+2026-05-26 07:55:27.874 [http-nio-8080-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-05-26 07:55:27.874 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept: text/css,*/*;q=0.1
+2026-05-26 07:55:27.874 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Handler: ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-05-26 07:55:27.874 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Site: same-origin
+2026-05-26 07:55:27.874 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-05-26 07:55:27.874 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-05-26 07:55:27.874 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Mode: no-cors
+2026-05-26 07:55:27.874 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🔵 NUEVA PETICIÓN HTTP
+2026-05-26 07:55:27.874 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Método: GET
+2026-05-26 07:55:27.874 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Dest: style
+2026-05-26 07:55:27.874 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - URI: /swagger-ui/index.css
+2026-05-26 07:55:27.874 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Query String: null
+2026-05-26 07:55:27.874 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Referer: http://localhost:8080/swagger-ui/index.html
+2026-05-26 07:55:27.874 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Remote Address: 0:0:0:0:0:0:0:1
+2026-05-26 07:55:27.874 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Session ID: Sin sesión
+2026-05-26 07:55:27.874 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - --- Headers ---
+2026-05-26 07:55:27.879 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Host: localhost:8080
+2026-05-26 07:55:27.879 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Connection: keep-alive
+2026-05-26 07:55:27.879 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua-platform: "Linux"
+2026-05-26 07:55:27.879 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36
+2026-05-26 07:55:27.879 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua: "Not/A)Brand";v="99", "Chromium";v="148"
+2026-05-26 07:55:27.879 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua-mobile: ?0
+2026-05-26 07:55:27.879 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept: text/css,*/*;q=0.1
+2026-05-26 07:55:27.879 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Site: same-origin
+2026-05-26 07:55:27.879 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Mode: no-cors
+2026-05-26 07:55:27.880 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Dest: style
+2026-05-26 07:55:27.880 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Referer: http://localhost:8080/swagger-ui/index.html
+2026-05-26 07:55:27.880 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Encoding: gzip, deflate, br, zstd
+2026-05-26 07:55:27.880 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Language: es-ES,es;q=0.9
+2026-05-26 07:55:27.880 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Handler: ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-05-26 07:55:27.880 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-05-26 07:55:27.883 [http-nio-8080-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-05-26 07:55:27.883 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-05-26 07:55:27.883 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🔵 NUEVA PETICIÓN HTTP
+2026-05-26 07:55:27.883 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Método: GET
+2026-05-26 07:55:27.884 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - URI: /swagger-ui/swagger-initializer.js
+2026-05-26 07:55:27.884 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Query String: null
+2026-05-26 07:55:27.884 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Remote Address: 0:0:0:0:0:0:0:1
+2026-05-26 07:55:27.884 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Session ID: Sin sesión
+2026-05-26 07:55:27.884 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - --- Headers ---
+2026-05-26 07:55:27.884 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Host: localhost:8080
+2026-05-26 07:55:27.884 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Connection: keep-alive
+2026-05-26 07:55:27.884 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua-platform: "Linux"
+2026-05-26 07:55:27.884 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36
+2026-05-26 07:55:27.884 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua: "Not/A)Brand";v="99", "Chromium";v="148"
+2026-05-26 07:55:27.884 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua-mobile: ?0
+2026-05-26 07:55:27.884 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept: */*
+2026-05-26 07:55:27.884 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Site: same-origin
+2026-05-26 07:55:27.885 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Mode: no-cors
+2026-05-26 07:55:27.885 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Dest: script
+2026-05-26 07:55:27.885 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Referer: http://localhost:8080/swagger-ui/index.html
+2026-05-26 07:55:27.885 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Encoding: gzip, deflate, br, zstd
+2026-05-26 07:55:27.885 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Language: es-ES,es;q=0.9
+2026-05-26 07:55:27.885 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Handler: ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-05-26 07:55:27.885 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-05-26 07:55:27.876 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Encoding: gzip, deflate, br, zstd
+2026-05-26 07:55:27.886 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Language: es-ES,es;q=0.9
+2026-05-26 07:55:27.886 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Handler: ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-05-26 07:55:27.887 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-05-26 07:55:27.872 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept: */*
+2026-05-26 07:55:27.888 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Site: same-origin
+2026-05-26 07:55:27.888 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Mode: no-cors
+2026-05-26 07:55:27.888 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Dest: script
+2026-05-26 07:55:27.888 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Referer: http://localhost:8080/swagger-ui/index.html
+2026-05-26 07:55:27.888 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Encoding: gzip, deflate, br, zstd
+2026-05-26 07:55:27.888 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Language: es-ES,es;q=0.9
+2026-05-26 07:55:27.888 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Handler: ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-05-26 07:55:27.888 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-05-26 07:55:27.899 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-05-26 07:55:27.900 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🟢 RESPUESTA HTTP
+2026-05-26 07:55:27.900 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Status: 200
+2026-05-26 07:55:27.900 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content Type: text/css
+2026-05-26 07:55:27.900 [http-nio-8080-exec-4] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-05-26 07:55:27.900 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-05-26 07:55:27.903 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-05-26 07:55:27.903 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🟢 RESPUESTA HTTP
+2026-05-26 07:55:27.903 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Status: 200
+2026-05-26 07:55:27.903 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content Type: text/javascript
+2026-05-26 07:55:27.903 [http-nio-8080-exec-6] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-05-26 07:55:27.903 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-05-26 07:55:27.905 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-05-26 07:55:27.905 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🟢 RESPUESTA HTTP
+2026-05-26 07:55:27.905 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Status: 200
+2026-05-26 07:55:27.906 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content Type: text/css
+2026-05-26 07:55:27.906 [http-nio-8080-exec-7] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-05-26 07:55:27.906 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-05-26 07:55:27.934 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-05-26 07:55:27.934 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🟢 RESPUESTA HTTP
+2026-05-26 07:55:27.934 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Status: 200
+2026-05-26 07:55:27.934 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content Type: text/javascript
+2026-05-26 07:55:27.934 [http-nio-8080-exec-5] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-05-26 07:55:27.934 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-05-26 07:55:27.943 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-05-26 07:55:27.943 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🟢 RESPUESTA HTTP
+2026-05-26 07:55:27.943 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Status: 200
+2026-05-26 07:55:27.943 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content Type: text/javascript
+2026-05-26 07:55:27.943 [http-nio-8080-exec-8] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-05-26 07:55:27.944 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-05-26 07:55:28.137 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.ReservaAuditorioRepository.
+2026-05-26 07:55:28.172 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing GET /v3/api-docs/swagger-config
+2026-05-26 07:55:28.176 [http-nio-8080-exec-9] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-26 07:55:28.178 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured GET /v3/api-docs/swagger-config
+2026-05-26 07:55:28.177 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/favicon-32x32.png
+2026-05-26 07:55:28.178 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/v3/api-docs/swagger-config", parameters={}
+2026-05-26 07:55:28.178 [http-nio-8080-exec-10] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-26 07:55:28.178 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/favicon-32x32.png
+2026-05-26 07:55:28.179 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/swagger-ui/favicon-32x32.png", parameters={}
+2026-05-26 07:55:28.179 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest)
+2026-05-26 07:55:28.179 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-05-26 07:55:28.179 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🔵 NUEVA PETICIÓN HTTP
+2026-05-26 07:55:28.179 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Método: GET
+2026-05-26 07:55:28.179 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - URI: /v3/api-docs/swagger-config
+2026-05-26 07:55:28.179 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Query String: null
+2026-05-26 07:55:28.179 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Remote Address: 0:0:0:0:0:0:0:1
+2026-05-26 07:55:28.179 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Session ID: Sin sesión
+2026-05-26 07:55:28.180 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - --- Headers ---
+2026-05-26 07:55:28.180 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Host: localhost:8080
+2026-05-26 07:55:28.180 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Connection: keep-alive
+2026-05-26 07:55:28.180 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua-platform: "Linux"
+2026-05-26 07:55:28.180 [http-nio-8080-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-05-26 07:55:28.180 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36
+2026-05-26 07:55:28.180 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-05-26 07:55:28.180 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua: "Not/A)Brand";v="99", "Chromium";v="148"
+2026-05-26 07:55:28.180 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🔵 NUEVA PETICIÓN HTTP
+2026-05-26 07:55:28.180 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Método: GET
+2026-05-26 07:55:28.180 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua-mobile: ?0
+2026-05-26 07:55:28.180 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - URI: /swagger-ui/favicon-32x32.png
+2026-05-26 07:55:28.180 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept: */*
+2026-05-26 07:55:28.180 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Query String: null
+2026-05-26 07:55:28.180 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Remote Address: 0:0:0:0:0:0:0:1
+2026-05-26 07:55:28.180 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Site: same-origin
+2026-05-26 07:55:28.180 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Session ID: Sin sesión
+2026-05-26 07:55:28.180 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - --- Headers ---
+2026-05-26 07:55:28.180 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Mode: cors
+2026-05-26 07:55:28.181 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Host: localhost:8080
+2026-05-26 07:55:28.181 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Connection: keep-alive
+2026-05-26 07:55:28.181 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua-platform: "Linux"
+2026-05-26 07:55:28.181 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36
+2026-05-26 07:55:28.181 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua: "Not/A)Brand";v="99", "Chromium";v="148"
+2026-05-26 07:55:28.182 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua-mobile: ?0
+2026-05-26 07:55:28.182 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
+2026-05-26 07:55:28.182 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Site: same-origin
+2026-05-26 07:55:28.183 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Mode: no-cors
+2026-05-26 07:55:28.183 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Dest: image
+2026-05-26 07:55:28.183 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Referer: http://localhost:8080/swagger-ui/index.html
+2026-05-26 07:55:28.183 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Encoding: gzip, deflate, br, zstd
+2026-05-26 07:55:28.183 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Language: es-ES,es;q=0.9
+2026-05-26 07:55:28.183 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Handler: ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2026-05-26 07:55:28.183 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-05-26 07:55:28.185 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Dest: empty
+2026-05-26 07:55:28.185 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Referer: http://localhost:8080/swagger-ui/index.html
+2026-05-26 07:55:28.185 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Encoding: gzip, deflate, br, zstd
+2026-05-26 07:55:28.185 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Language: es-ES,es;q=0.9
+2026-05-26 07:55:28.185 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Handler: org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest)
+2026-05-26 07:55:28.185 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-05-26 07:55:28.186 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-05-26 07:55:28.187 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🟢 RESPUESTA HTTP
+2026-05-26 07:55:28.187 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Status: 200
+2026-05-26 07:55:28.187 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content Type: image/png
+2026-05-26 07:55:28.187 [http-nio-8080-exec-10] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-05-26 07:55:28.187 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-05-26 07:55:28.188 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json]
+2026-05-26 07:55:28.189 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{configUrl=/v3/api-docs/swagger-config, oauth2RedirectUrl=http://localhost:8080/swagger-ui/oauth2-re (truncated)...]
+2026-05-26 07:55:28.202 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.EstudianteRepository…
+2026-05-26 07:55:28.204 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Estudiante.findMaxLegajoNumero.count
+2026-05-26 07:55:28.221 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-05-26 07:55:28.222 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🟢 RESPUESTA HTTP
+2026-05-26 07:55:28.222 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Status: 200
+2026-05-26 07:55:28.222 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content Type: application/json
+2026-05-26 07:55:28.222 [http-nio-8080-exec-9] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-05-26 07:55:28.222 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-05-26 07:55:28.237 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /v3/api-docs
+2026-05-26 07:55:28.238 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-05-26 07:55:28.238 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /v3/api-docs
+2026-05-26 07:55:28.238 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/v3/api-docs", parameters={}
+2026-05-26 07:55:28.239 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
+2026-05-26 07:55:28.239 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-05-26 07:55:28.239 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🔵 NUEVA PETICIÓN HTTP
+2026-05-26 07:55:28.240 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Método: GET
+2026-05-26 07:55:28.240 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - URI: /v3/api-docs
+2026-05-26 07:55:28.240 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Query String: null
+2026-05-26 07:55:28.240 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Remote Address: 0:0:0:0:0:0:0:1
+2026-05-26 07:55:28.240 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Session ID: Sin sesión
+2026-05-26 07:55:28.240 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - --- Headers ---
+2026-05-26 07:55:28.240 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Host: localhost:8080
+2026-05-26 07:55:28.240 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Connection: keep-alive
+2026-05-26 07:55:28.240 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua-platform: "Linux"
+2026-05-26 07:55:28.240 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36
+2026-05-26 07:55:28.240 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept: application/json,*/*
+2026-05-26 07:55:28.240 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua: "Not/A)Brand";v="99", "Chromium";v="148"
+2026-05-26 07:55:28.240 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - sec-ch-ua-mobile: ?0
+2026-05-26 07:55:28.240 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Site: same-origin
+2026-05-26 07:55:28.240 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Mode: cors
+2026-05-26 07:55:28.240 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Sec-Fetch-Dest: empty
+2026-05-26 07:55:28.240 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Referer: http://localhost:8080/swagger-ui/index.html
+2026-05-26 07:55:28.240 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Encoding: gzip, deflate, br, zstd
+2026-05-26 07:55:28.241 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Accept-Language: es-ES,es;q=0.9
+2026-05-26 07:55:28.241 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Handler: org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
+2026-05-26 07:55:28.241 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ════════════════════════════════════════════════════════════
+2026-05-26 07:55:28.483 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Estudiante.existsByLegajo'
+2026-05-26 07:55:28.483 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Estudiante.existsByLegajo
+2026-05-26 07:55:28.487 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.EstudianteRepository.
+2026-05-26 07:55:28.501 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.DocenteRepository…
+2026-05-26 07:55:28.505 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.DocenteRepository.
+2026-05-26 07:55:28.519 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.SolicitudResetPasswordRepository…
+2026-05-26 07:55:28.521 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'SolicitudResetPassword.findByEstadoOrderByFechaSolicitudDesc'
+2026-05-26 07:55:28.522 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query SolicitudResetPassword.findByEstadoOrderByFechaSolicitudDesc
+2026-05-26 07:55:28.523 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'SolicitudResetPassword.existsByEmailAndEstado'
+2026-05-26 07:55:28.524 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query SolicitudResetPassword.existsByEmailAndEstado
+2026-05-26 07:55:28.525 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'SolicitudResetPassword.findAllByOrderByFechaSolicitudDesc'
+2026-05-26 07:55:28.526 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query SolicitudResetPassword.findAllByOrderByFechaSolicitudDesc
+2026-05-26 07:55:28.538 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.SolicitudResetPasswordRepository.
+2026-05-26 07:55:28.744 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-05-26 07:55:28.746 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-05-26 07:55:28.808 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.ColaInscripcionRepository…
+2026-05-26 07:55:28.812 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'ColaInscripcion.existsByEstudianteIdUsuarioAndMateriaIdMateriaAndEstado'
+2026-05-26 07:55:28.813 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.existsByEstudianteIdUsuarioAndMateriaIdMateriaAndEstado
+2026-05-26 07:55:28.815 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.findMaxPosicion.count
+2026-05-26 07:55:29.074 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.countDelante.count
+2026-05-26 07:55:29.085 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.findByEstudianteId.count
+2026-05-26 07:55:29.096 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.findPendientesPorMateriaOrdenados.count
+2026-05-26 07:55:29.112 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.findPrimeroPendiente.count
+2026-05-26 07:55:29.117 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.expirarVencidos.count
+2026-05-26 07:55:29.238 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'ColaInscripcion.findByEstudianteIdUsuarioAndMateriaIdMateria'
+2026-05-26 07:55:29.238 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.findByEstudianteIdUsuarioAndMateriaIdMateria
+2026-05-26 07:55:29.240 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query ColaInscripcion.findExpirados.count
+2026-05-26 07:55:29.250 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.ColaInscripcionRepository.
+2026-05-26 07:55:29.269 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.MateriaRepository…
+2026-05-26 07:55:29.274 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Materia.findByCodigo'
+2026-05-26 07:55:29.274 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Materia.findByCodigo
+2026-05-26 07:55:29.277 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Materia.findByIdForUpdate.count
+2026-05-26 07:55:29.286 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Materia.existsByCodigo'
+2026-05-26 07:55:29.286 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Materia.existsByCodigo
+2026-05-26 07:55:29.288 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Materia.findByCarreraOrTransversales.count
+2026-05-26 07:55:29.309 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.MateriaRepository.
+2026-05-26 07:55:29.328 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.InscripcionRepository…
+2026-05-26 07:55:29.332 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Inscripcion.countCuposOcupados.count
+2026-05-26 07:55:29.338 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Inscripcion.existsByEstudianteIdUsuarioAndMateriaIdMateriaAndEstadoNot'
+2026-05-26 07:55:29.338 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Inscripcion.existsByEstudianteIdUsuarioAndMateriaIdMateriaAndEstadoNot
+2026-05-26 07:55:29.340 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Inscripcion.findByEstudianteIdUsuario'
+2026-05-26 07:55:29.341 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Inscripcion.findByEstudianteIdUsuario
+2026-05-26 07:55:29.343 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Inscripcion.findByMateriaIdMateria'
+2026-05-26 07:55:29.343 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Inscripcion.findByMateriaIdMateria
+2026-05-26 07:55:29.345 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Inscripcion.findByEstudianteIdUsuarioAndMateriaIdMateria'
+2026-05-26 07:55:29.346 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Inscripcion.findByEstudianteIdUsuarioAndMateriaIdMateria
+2026-05-26 07:55:29.351 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.InscripcionRepository.
+2026-05-26 07:55:29.535 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Initializing repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.PeriodoRepository…
+2026-05-26 07:55:29.537 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Periodo.findByActivoTrue'
+2026-05-26 07:55:29.539 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Periodo.findByActivoTrue
+2026-05-26 07:55:29.540 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Looking up named query 'Periodo.findByAnio'
+2026-05-26 07:55:29.542 [restartedMain] DEBUG o.s.d.j.repository.query.NamedQuery - Did not find named query Periodo.findByAnio
+2026-05-26 07:55:29.549 [restartedMain] DEBUG o.s.d.r.c.s.RepositoryFactorySupport - Finished creation of repository instance for com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.PeriodoRepository.
+2026-05-26 07:55:29.854 [restartedMain] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-26 07:55:30.168 [http-nio-8080-exec-1] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 1915 ms
+2026-05-26 07:55:30.237 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [application/json, */*] and supported [application/json]
+2026-05-26 07:55:30.241 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [{7b226f70656e617069223a22332e312e30222c22696e666f223a7b227469746c65223a22446563616e61746f2041504920e (truncated)...]
+2026-05-26 07:55:30.248 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-05-26 07:55:30.248 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - 🟢 RESPUESTA HTTP
+2026-05-26 07:55:30.248 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Status: 200
+2026-05-26 07:55:30.248 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - Content Type: application/json
+2026-05-26 07:55:30.248 [http-nio-8080-exec-1] DEBUG c.D.O.c.DebuggerConfig$HttpDebuggerInterceptor - ────────────────────────────────────────────────────────────
+2026-05-26 07:55:30.249 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2026-05-26 07:55:30.308 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-05-26 07:55:30.655 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 90 mappings in 'requestMappingHandlerMapping'
+2026-05-26 07:55:30.713 [restartedMain] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2026-05-26 07:55:30.773 [restartedMain] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 2 RequestBodyAdvice, 1 ResponseBodyAdvice
+2026-05-26 07:55:30.839 [restartedMain] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2026-05-26 07:55:31.141 [restartedMain] WARN  o.s.b.w.s.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-05-26 07:55:31.146 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-26 07:55:31.151 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-05-26 07:55:31.156 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-05-26 07:55:31.169 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-05-26 07:55:31.184 [restartedMain] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:423)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:409)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:613)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:379)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:306)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:1013)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.DecanatoOrtizSerrano.OrtizSerranoTP3.OrtizSerranoTp3Application.main(OrtizSerranoTp3Application.java:14)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:52)
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat server
+	at org.springframework.boot.tomcat.TomcatWebServer.start(TomcatWebServer.java:248)
+	at org.springframework.boot.web.server.servlet.context.WebServerStartStopLifecycle.start(WebServerStartStopLifecycle.java:44)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:420)
+	... 17 common frames omitted
+Caused by: java.lang.IllegalArgumentException: standardService.connector.startFailed
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:220)
+	at org.springframework.boot.tomcat.TomcatWebServer.addPreviouslyRemovedConnectors(TomcatWebServer.java:307)
+	at org.springframework.boot.tomcat.TomcatWebServer.start(TomcatWebServer.java:233)
+	... 19 common frames omitted
+Caused by: org.apache.catalina.LifecycleException: Protocol handler start failed
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1119)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:217)
+	... 21 common frames omitted
+Caused by: java.net.BindException: La dirección ya se está usando
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:577)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.netBind(ServerSocketChannelImpl.java:344)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:301)
+	at org.apache.tomcat.util.net.NioEndpoint.initServerSocket(NioEndpoint.java:265)
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:220)
+	at org.apache.tomcat.util.net.AbstractEndpoint.bindWithCleanup(AbstractEndpoint.java:1640)
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:1723)
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:644)
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1116)
+	... 23 common frames omitted
