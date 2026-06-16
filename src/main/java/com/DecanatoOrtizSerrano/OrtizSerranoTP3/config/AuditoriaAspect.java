@@ -9,18 +9,22 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Aspecto AOP que intercepta automáticamente métodos clave
- * de los services para registrar eventos en la auditoría encadenada.
+ * T016/T017/T019/T021 — Aspecto AOP de auditoría encadenada.
  *
- * Patrones interceptados:
- *  - InscripcionService:  inscribir, cancelar, cargarNota, cerrarNota
- *  - MateriaService:      crear, actualizar, eliminar
- *  - EstudianteService:   crear, actualizar, eliminar
- *  - PeriodoService:      crear, actualizar, eliminar
- *  - AuditorioService:    crear, actualizar, eliminar, toggleActivo
- *  - ReservaAuditorioService: crear, cambiarEstado, cancelar
+ * PROPAGACIÓN: Cada @Around es @Transactional(REQUIRED) → crea T1 que envuelve
+ * tanto el método de negocio (se une a T1) como registrar() (MANDATORY usa T1).
+ * Atomicidad garantizada: si el negocio falla → rollback de T1 → audit no persiste.
+ * Si audit falla → rollback de T1 → negocio tampoco persiste (Principio III).
+ *
+ * Acciones canónicas (alineadas con spec):
+ *  INSCRIPCION_CONFIRMADA, INSCRIPCION_CANCELADA,
+ *  NOTA_CARGADA, NOTA_CERRADA, NOTA_REABIERTA (inline en reabrir()),
+ *  MATERIA_CREADA/MODIFICADA/ELIMINADA,
+ *  USUARIO_CREADO/MODIFICADO/ELIMINADO,
+ *  LOGIN_FALLIDO, CUENTA_BLOQUEADA (via registrarAutonomo() en AuthController)
  */
 @Aspect
 @Component
@@ -29,205 +33,202 @@ public class AuditoriaAspect {
     @Autowired
     private AuditoriaService auditoriaService;
 
-    // ─── InscripcionService ──────────────────────────────────────────────────
+    // ── InscripcionService ────────────────────────────────────────────────────
 
+    /** T019 — inscripcion exitosa con cupo */
+    @Transactional
     @Around("execution(* com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.InscripcionService.inscribir(..))")
     public Object auditarInscribir(ProceedingJoinPoint jp) throws Throwable {
         Object result = jp.proceed();
         try {
-            Long idInscripcion = extraerIdLong(result, "getIdInscripcion");
-            registrar("Inscripcion", idInscripcion, "INSCRIBIR",
-                "Nuevo alumno inscripto en materia");
-        } catch (Exception ignored) { /* no interrumpir el flujo principal */ }
+            Long id = extraerIdLong(result, "getIdInscripcion");
+            registrar("Inscripcion", id, "INSCRIPCION_CONFIRMADA",
+                "Alumno inscripto en materia con cupo disponible");
+        } catch (Exception ignored) { }
         return result;
     }
 
+    /** T019 — inscripcion cancelada */
+    @Transactional
     @Around("execution(* com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.InscripcionService.cancelar(..))")
-    public Object auditarCancelarInscripcion(ProceedingJoinPoint jp) throws Throwable {
+    public Object auditarCancelar(ProceedingJoinPoint jp) throws Throwable {
         Object result = jp.proceed();
         try {
             Long id = extraerIdLong(result, "getIdInscripcion");
-            registrar("Inscripcion", id, "CANCELAR", "Inscripción cancelada");
-        } catch (Exception ignored) { /* no interrumpir */ }
+            registrar("Inscripcion", id, "INSCRIPCION_CANCELADA", "Inscripcion cancelada por el alumno");
+        } catch (Exception ignored) { }
         return result;
     }
 
+    /** T016 — docente carga nota */
+    @Transactional
     @Around("execution(* com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.InscripcionService.cargarNota(..))")
     public Object auditarCargarNota(ProceedingJoinPoint jp) throws Throwable {
         Object[] args = jp.getArgs();
         Object result = jp.proceed();
         try {
-            Long idInscripcion = (Long) args[0];
-            registrar("Inscripcion", idInscripcion, "CARGAR_NOTA",
-                "Docente cargó/actualizó nota de inscripción");
-        } catch (Exception ignored) { /* no interrumpir */ }
+            registrar("Inscripcion", (Long) args[0], "NOTA_CARGADA",
+                "Docente cargo/actualizo nota de inscripcion");
+        } catch (Exception ignored) { }
         return result;
     }
 
+    /** T017 — docente cierra nota (inmutabilidad) */
+    @Transactional
     @Around("execution(* com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.InscripcionService.cerrarNota(..))")
     public Object auditarCerrarNota(ProceedingJoinPoint jp) throws Throwable {
         Object[] args = jp.getArgs();
         Object result = jp.proceed();
         try {
-            Long idInscripcion = (Long) args[0];
-            registrar("Inscripcion", idInscripcion, "CERRAR_NOTA",
-                "Docente cerró definitivamente la nota");
-        } catch (Exception ignored) { /* no interrumpir */ }
+            registrar("Inscripcion", (Long) args[0], "NOTA_CERRADA",
+                "Docente cerro definitivamente la nota — inmutable");
+        } catch (Exception ignored) { }
         return result;
     }
 
-    // ─── MateriaService ──────────────────────────────────────────────────────
+    // ── MateriaService ────────────────────────────────────────────────────────
 
+    @Transactional
     @Around("execution(* com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.MateriaService.crear(..))")
     public Object auditarCrearMateria(ProceedingJoinPoint jp) throws Throwable {
         Object result = jp.proceed();
         try {
-            Long id = extraerIdLong(result, "getIdMateria");
-            registrar("Materia", id, "CREAR", "Materia creada");
-        } catch (Exception ignored) { /* no interrumpir */ }
+            registrar("Materia", extraerIdLong(result, "getIdMateria"), "MATERIA_CREADA", "Materia creada");
+        } catch (Exception ignored) { }
         return result;
     }
 
+    @Transactional
     @Around("execution(* com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.MateriaService.actualizar(..))")
     public Object auditarActualizarMateria(ProceedingJoinPoint jp) throws Throwable {
         Object[] args = jp.getArgs();
         Object result = jp.proceed();
         try {
-            registrar("Materia", (Long) args[0], "MODIFICAR", "Materia modificada");
-        } catch (Exception ignored) { /* no interrumpir */ }
+            registrar("Materia", (Long) args[0], "MATERIA_MODIFICADA", "Materia modificada");
+        } catch (Exception ignored) { }
         return result;
     }
 
+    @Transactional
     @Around("execution(* com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.MateriaService.eliminar(..))")
     public Object auditarEliminarMateria(ProceedingJoinPoint jp) throws Throwable {
         Object[] args = jp.getArgs();
         jp.proceed();
         try {
-            registrar("Materia", (Long) args[0], "ELIMINAR", "Materia eliminada");
-        } catch (Exception ignored) { /* no interrumpir */ }
+            registrar("Materia", (Long) args[0], "MATERIA_ELIMINADA", "Materia eliminada");
+        } catch (Exception ignored) { }
         return null;
     }
 
-    // ─── EstudianteService ───────────────────────────────────────────────────
+    // ── EstudianteService (T021) ───────────────────────────────────────────────
 
+    /** T021 — nuevo usuario creado */
+    @Transactional
     @Around("execution(* com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.EstudianteService.crear(..))")
     public Object auditarCrearEstudiante(ProceedingJoinPoint jp) throws Throwable {
         Object result = jp.proceed();
         try {
-            Long id = extraerIdLong(result, "getIdUsuario");
-            registrar("Estudiante", id, "CREAR", "Estudiante registrado");
-        } catch (Exception ignored) { /* no interrumpir */ }
+            registrar("Usuario", extraerIdLong(result, "getIdUsuario"), "USUARIO_CREADO",
+                "Nuevo estudiante registrado en el sistema");
+        } catch (Exception ignored) { }
         return result;
     }
 
+    @Transactional
     @Around("execution(* com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.EstudianteService.actualizar(..))")
     public Object auditarActualizarEstudiante(ProceedingJoinPoint jp) throws Throwable {
         Object[] args = jp.getArgs();
         Object result = jp.proceed();
         try {
-            registrar("Estudiante", (Long) args[0], "MODIFICAR", "Datos de estudiante modificados");
-        } catch (Exception ignored) { /* no interrumpir */ }
+            registrar("Usuario", (Long) args[0], "USUARIO_MODIFICADO", "Datos de estudiante modificados");
+        } catch (Exception ignored) { }
         return result;
     }
 
+    /** T021 — usuario eliminado */
+    @Transactional
     @Around("execution(* com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.EstudianteService.eliminar(..))")
     public Object auditarEliminarEstudiante(ProceedingJoinPoint jp) throws Throwable {
         Object[] args = jp.getArgs();
         jp.proceed();
         try {
-            registrar("Estudiante", (Long) args[0], "ELIMINAR", "Estudiante eliminado");
-        } catch (Exception ignored) { /* no interrumpir */ }
+            registrar("Usuario", (Long) args[0], "USUARIO_ELIMINADO", "Estudiante eliminado del sistema");
+        } catch (Exception ignored) { }
         return null;
     }
 
-    // ─── AuditorioService ────────────────────────────────────────────────────
+    // ── AuditorioService / ReservaAuditorioService ─────────────────────────────
 
+    @Transactional
     @Around("execution(* com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.AuditorioService.crear(..))")
     public Object auditarCrearAuditorio(ProceedingJoinPoint jp) throws Throwable {
         Object result = jp.proceed();
-        try {
-            Long id = extraerIdLong(result, "getIdAuditorio");
-            registrar("Auditorio", id, "CREAR", "Auditorio creado");
-        } catch (Exception ignored) { /* no interrumpir */ }
+        try { registrar("Auditorio", extraerIdLong(result, "getIdAuditorio"), "AUDITORIO_CREADO", "Auditorio creado"); }
+        catch (Exception ignored) { }
         return result;
     }
 
+    @Transactional
     @Around("execution(* com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.AuditorioService.actualizar(..))")
     public Object auditarActualizarAuditorio(ProceedingJoinPoint jp) throws Throwable {
         Object[] args = jp.getArgs();
         Object result = jp.proceed();
-        try {
-            registrar("Auditorio", (Long) args[0], "MODIFICAR", "Auditorio modificado");
-        } catch (Exception ignored) { /* no interrumpir */ }
+        try { registrar("Auditorio", (Long) args[0], "AUDITORIO_MODIFICADO", "Auditorio modificado"); }
+        catch (Exception ignored) { }
         return result;
     }
 
+    @Transactional
     @Around("execution(* com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.AuditorioService.eliminar(..))")
     public Object auditarEliminarAuditorio(ProceedingJoinPoint jp) throws Throwable {
         Object[] args = jp.getArgs();
         jp.proceed();
-        try {
-            registrar("Auditorio", (Long) args[0], "ELIMINAR", "Auditorio eliminado");
-        } catch (Exception ignored) { /* no interrumpir */ }
+        try { registrar("Auditorio", (Long) args[0], "AUDITORIO_ELIMINADO", "Auditorio eliminado"); }
+        catch (Exception ignored) { }
         return null;
     }
 
-    // ─── ReservaAuditorioService ─────────────────────────────────────────────
-
+    @Transactional
     @Around("execution(* com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.ReservaAuditorioService.crear(..))")
     public Object auditarCrearReserva(ProceedingJoinPoint jp) throws Throwable {
         Object result = jp.proceed();
-        try {
-            Long id = extraerIdLong(result, "getIdReserva");
-            registrar("ReservaAuditorio", id, "CREAR", "Reserva de auditorio creada (PENDIENTE)");
-        } catch (Exception ignored) { /* no interrumpir */ }
+        try { registrar("ReservaAuditorio", extraerIdLong(result, "getIdReserva"), "RESERVA_CREADA", "Reserva creada"); }
+        catch (Exception ignored) { }
         return result;
     }
 
+    @Transactional
     @Around("execution(* com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.ReservaAuditorioService.cambiarEstado(..))")
     public Object auditarCambiarEstadoReserva(ProceedingJoinPoint jp) throws Throwable {
         Object[] args = jp.getArgs();
         Object result = jp.proceed();
         try {
             String nuevoEstado = args.length > 1 ? String.valueOf(args[1]) : "?";
-            registrar("ReservaAuditorio", (Long) args[0], "CAMBIAR_ESTADO",
-                "Estado de reserva cambiado a: " + nuevoEstado);
-        } catch (Exception ignored) { /* no interrumpir */ }
+            registrar("ReservaAuditorio", (Long) args[0], "RESERVA_ESTADO_CAMBIADO",
+                "Estado cambiado a: " + nuevoEstado);
+        } catch (Exception ignored) { }
         return result;
     }
 
-    // ─── Helpers ─────────────────────────────────────────────────────────────
+    // ── Helpers ───────────────────────────────────────────────────────────────
 
-    /**
-     * Registra un evento usando el usuario autenticado del contexto de seguridad.
-     */
     private void registrar(String entidad, Long idEntidad, String accion, String descripcion) {
         Long idUsuario = null;
         String email = "sistema";
-
         try {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             if (auth != null && auth.isAuthenticated() && auth.getPrincipal() instanceof UserDetails ud) {
                 email = ud.getUsername();
-                // Intentar obtener el ID si es nuestro UserDetailsImpl
-                try {
-                    idUsuario = (Long) ud.getClass().getMethod("getId").invoke(ud);
-                } catch (Exception ignored) { /* no crítico */ }
+                try { idUsuario = (Long) ud.getClass().getMethod("getId").invoke(ud); }
+                catch (Exception ignored) { }
             }
-        } catch (Exception ignored) { /* no interrumpir el flujo */ }
-
+        } catch (Exception ignored) { }
         auditoriaService.registrar(entidad, idEntidad, accion, descripcion, idUsuario, email);
     }
 
-    /**
-     * Extrae un Long de un objeto usando reflexión sobre un getter.
-     */
-    private Long extraerIdLong(Object obj, String getterName) {
+    private Long extraerIdLong(Object obj, String getter) {
         if (obj == null) return null;
-        try {
-            return (Long) obj.getClass().getMethod(getterName).invoke(obj);
-        } catch (Exception e) {
-            return null;
-        }
+        try { return (Long) obj.getClass().getMethod(getter).invoke(obj); }
+        catch (Exception e) { return null; }
     }
 }

@@ -76,6 +76,42 @@ public class AuditoriaService {
         return registrar(entidad, idEntidad, accion, descripcion, idUsuario, emailUsuario, null);
     }
 
+    // ─── Registro de eventos (autonomo — para uso fuera de transacción) ────────
+
+    /**
+     * Registra un evento que ocurre fuera de una transacción activa (ej: LOGIN_FALLIDO).
+     *
+     * Propagation.REQUIRES_NEW: crea su propia transacción independiente.
+     * Si la transacción principal falla, este registro IGUAL queda persistido.
+     * Usar SOLO para eventos de seguridad/autenticación donde no hay @Transactional del llamador.
+     */
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public RegistroAuditoria registrarAutonomo(
+            String entidad,
+            Long idEntidad,
+            String accion,
+            String descripcion,
+            Long idUsuario,
+            String emailUsuario,
+            String ipOrigen) {
+
+        String hashAnterior = hashChainService.getUltimoHash();
+
+        RegistroAuditoria registro = new RegistroAuditoria();
+        registro.setEntidad(entidad);
+        registro.setIdEntidad(idEntidad);
+        registro.setAccion(accion);
+        registro.setDescripcion(descripcion);
+        registro.setIdUsuario(idUsuario);
+        registro.setEmailUsuario(emailUsuario);
+        registro.setIpOrigen(ipOrigen);
+        registro.setTimestampEvento(LocalDateTime.now());
+        registro.setHashAnterior(hashAnterior);
+        registro.setHashActual(hashChainService.calcularHash(registro));
+
+        return auditoriaRepository.save(registro);
+    }
+
     // ─── Consultas paginadas (para GET /api/admin/auditoria — US2) ────────────
 
     public Page<RegistroAuditoria> listarTodosPaginado(Pageable pageable) {

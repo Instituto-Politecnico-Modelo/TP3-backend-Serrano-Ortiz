@@ -11,6 +11,7 @@ import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.SolicitudResetPasswor
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.UserDetailsImpl;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.jwt.JwtUtil;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.AuditoriaService;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.UserService;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.RateLimiterService;
 import jakarta.validation.Valid;
@@ -65,6 +66,10 @@ public class AuthController {
     @Autowired
     private RateLimiterService rateLimiterService;
 
+    /** T020 — auditoria de LOGIN_FALLIDO (registrarAutonomo = REQUIRES_NEW sin transaccion del caller) */
+    @Autowired
+    private AuditoriaService auditoriaService;
+
     /**
      * POST /api/auth/login - Autenticar usuario y devolver JWT
      */
@@ -95,6 +100,15 @@ public class AuthController {
         } catch (org.springframework.security.core.AuthenticationException ex) {
             // Registrar el fallo para el rate limiter por IP
             rateLimiterService.registrarLoginFallido(clientIp);
+            // T020 — LOGIN_FALLIDO: registrar en auditoria con REQUIRES_NEW (sin transaccion previa)
+            try {
+                auditoriaService.registrarAutonomo(
+                    "Usuario", null, "LOGIN_FALLIDO",
+                    "Intento de login fallido para: " + loginRequest.getEmail(),
+                    null, loginRequest.getEmail(), clientIp);
+            } catch (Exception auditEx) {
+                // Nunca interrumpir el flujo de autenticacion por un fallo de auditoria
+            }
             // Respuesta genérica — no revelar si el email existe o no
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(new MessageResponse("Credenciales inválidas"));
