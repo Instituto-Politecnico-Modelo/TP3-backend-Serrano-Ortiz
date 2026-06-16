@@ -36,42 +36,42 @@ public class RegistroAuditoria {
     private Long idRegistro;
 
     /** Nombre de la entidad afectada (ej: "Inscripcion", "Materia", "Usuario") */
-    @Column(name = "entidad", nullable = false, length = 100)
+    @Column(name = "entidad", nullable = false, updatable = false, length = 50)
     private String entidad;
 
     /** ID del objeto afectado */
-    @Column(name = "id_entidad")
+    @Column(name = "id_entidad", updatable = false)
     private Long idEntidad;
 
     /** Acción realizada: CREAR, MODIFICAR, ELIMINAR, LOGIN, CERRAR_NOTA, etc. */
-    @Column(name = "accion", nullable = false, length = 50)
+    @Column(name = "accion", nullable = false, updatable = false, length = 50)
     private String accion;
 
     /** ID del usuario que realizó la acción (null = sistema) */
-    @Column(name = "id_usuario")
+    @Column(name = "id_usuario", updatable = false)
     private Long idUsuario;
 
     /** Email del usuario para trazabilidad sin JOIN */
-    @Column(name = "email_usuario", length = 255)
+    @Column(name = "email_usuario", updatable = false, length = 255)
     private String emailUsuario;
 
     /** Descripción legible del cambio */
-    @Column(name = "descripcion", columnDefinition = "TEXT")
+    @Column(name = "descripcion", updatable = false, columnDefinition = "TEXT")
     private String descripcion;
 
     /** IP del cliente (si aplica) */
-    @Column(name = "ip_origen", length = 45)
+    @Column(name = "ip_origen", updatable = false, length = 45)
     private String ipOrigen;
 
-    /** Timestamp del evento */
-    @Column(name = "timestamp_evento", nullable = false)
+    /** Timestamp del evento con precisión de milisegundos */
+    @Column(name = "timestamp_evento", nullable = false, updatable = false, columnDefinition = "DATETIME(3)")
     private LocalDateTime timestampEvento;
 
     /**
      * Hash SHA-256 del registro anterior en la cadena.
-     * Para el primer registro es "GENESIS".
+     * Para el primer registro es HashChainService.GENESIS_HASH.
      */
-    @Column(name = "hash_anterior", nullable = false, length = 64)
+    @Column(name = "hash_anterior", nullable = false, updatable = false, length = 64)
     private String hashAnterior;
 
     /**
@@ -79,7 +79,7 @@ public class RegistroAuditoria {
      *                 + descripcion + timestamp + idUsuario
      * Garantiza integridad: si se modifica cualquier campo, el hash no coincide.
      */
-    @Column(name = "hash_actual", nullable = false, unique = true, length = 64)
+    @Column(name = "hash_actual", nullable = false, updatable = false, unique = true, length = 64)
     private String hashActual;
 
     public RegistroAuditoria() {}

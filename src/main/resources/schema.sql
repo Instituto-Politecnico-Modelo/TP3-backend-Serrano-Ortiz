@@ -118,3 +118,30 @@ INSERT INTO inscripciones (id_estudiante, id_materia, fecha_inscripcion, estado,
 (1, 1, '2024-03-01', 'ACTIVA', 8.5, 7.0, 15),
 (1, 2, '2024-03-01', 'ACTIVA', 9.0, 8.5, 18),
 (2, 1, '2024-03-01', 'ACTIVA', 7.5, 8.0, 16);
+
+-- =====================================================
+-- T003/T004 — Tabla: auditoria (append-only, hash encadenada)
+-- NOTA: con spring.sql.init.mode=never y ddl-auto=update,
+--       Hibernate crea esta tabla automáticamente desde RegistroAuditoria.java.
+--       Este DDL es documentación de referencia y para ambientes con Flyway/Liquibase.
+-- =====================================================
+CREATE TABLE IF NOT EXISTS auditoria (
+    id_registro      BIGINT          AUTO_INCREMENT PRIMARY KEY,
+    entidad          VARCHAR(50)     NOT NULL,
+    id_entidad       BIGINT          NULL,
+    accion           VARCHAR(50)     NOT NULL,
+    id_usuario       BIGINT          NULL,
+    email_usuario    VARCHAR(255)    NULL,
+    descripcion      TEXT            NULL,
+    ip_origen        VARCHAR(45)     NULL,
+    timestamp_evento DATETIME(3)     NOT NULL,
+    hash_anterior    CHAR(64)        NOT NULL,
+    hash_actual      CHAR(64)        NOT NULL UNIQUE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- T004 — Índices de rendimiento (obligatorios, verificados en SC-001)
+CREATE INDEX IF NOT EXISTS idx_audit_timestamp  ON auditoria (timestamp_evento);
+CREATE INDEX IF NOT EXISTS idx_audit_entidad_id ON auditoria (entidad, id_entidad);
+CREATE INDEX IF NOT EXISTS idx_audit_usuario    ON auditoria (id_usuario);
+CREATE INDEX IF NOT EXISTS idx_audit_accion     ON auditoria (accion);
+
