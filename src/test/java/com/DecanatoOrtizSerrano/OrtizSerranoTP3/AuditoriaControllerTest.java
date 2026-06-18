@@ -19,6 +19,7 @@ import java.util.List;
 import static org.hamcrest.Matchers.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -309,5 +310,33 @@ class AuditoriaControllerTest {
     @DisplayName("T026 — SC-001: GET /api/admin/auditoria con 10k registros ≤ 500ms p95")
     void t026_performance_10kRegistros() {
         // Cubrir en DatabaseVolumeTest o suite de integración con @ActiveProfiles("perf")
+    }
+
+    // ════════════════════════════════════════════════════════════════════════════
+    //  T049 — DELETE /api/admin/auditoria/** → 405 Method Not Allowed
+    //         Verificar retención 5 años: el log es inmutable, no hay DELETE
+    // ════════════════════════════════════════════════════════════════════════════
+
+    @Test @Order(49)
+    @DisplayName("T049a — DELETE /api/admin/auditoria → 405 (no existe endpoint de borrado)")
+    void t049a_delete_raiz_retorna405() throws Exception {
+        mockMvc.perform(delete("/api/admin/auditoria"))
+                .andExpect(status().isMethodNotAllowed());
+    }
+
+    @Test @Order(49)
+    @DisplayName("T049b — DELETE /api/admin/auditoria/{id} → 404 (no hay mapping, inmutabilidad garantizada)")
+    void t049b_delete_porId_noEsOk() throws Exception {
+        // Spring devuelve 404 porque no existe ningún mapping DELETE para /{id}.
+        // El controller solo expone GETs → borrado imposible a nivel HTTP.
+        mockMvc.perform(delete("/api/admin/auditoria/1"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test @Order(49)
+    @DisplayName("T049c — DELETE /api/admin/auditoria/entidad/Inscripcion → 405")
+    void t049c_delete_porEntidad_retorna405() throws Exception {
+        mockMvc.perform(delete("/api/admin/auditoria/entidad/Inscripcion"))
+                .andExpect(status().isMethodNotAllowed());
     }
 }

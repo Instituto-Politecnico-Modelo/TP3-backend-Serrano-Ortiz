@@ -1,6 +1,7 @@
 package com.DecanatoOrtizSerrano.OrtizSerranoTP3.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Immutable;
 import java.time.LocalDateTime;
 
 /**
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
  * con el hashAnterior del siguiente → la cadena queda rota → detectable.
  */
 @Entity
+@Immutable
 @Table(
     name = "auditoria",
     indexes = {

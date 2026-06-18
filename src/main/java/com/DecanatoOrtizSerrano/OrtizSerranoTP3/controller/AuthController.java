@@ -14,6 +14,7 @@ import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.jwt.JwtUtil;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.AuditoriaService;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.UserService;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.RateLimiterService;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.util.IpExtractor;
 import jakarta.validation.Valid;
 import jakarta.servlet.http.HttpServletRequest;
 import io.swagger.v3.oas.annotations.Operation;
@@ -70,6 +71,10 @@ public class AuthController {
     @Autowired
     private AuditoriaService auditoriaService;
 
+    /** T046 — extractor de IP real (X-Forwarded-For / X-Real-IP / getRemoteAddr) */
+    @Autowired
+    private IpExtractor ipExtractor;
+
     /**
      * POST /api/auth/login - Autenticar usuario y devolver JWT
      */
@@ -83,7 +88,7 @@ public class AuthController {
                                                HttpServletRequest httpRequest) {
 
         // ── Protección brute-force: bloquear IP con demasiados intentos fallidos ─
-        String clientIp = obtenerIp(httpRequest);
+        String clientIp = ipExtractor.extraer(httpRequest);
         if (rateLimiterService.loginBloqueado(clientIp)) {
             long espera = rateLimiterService.segundosHastaDesbloqueoLogin(clientIp);
             return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS)
@@ -368,17 +373,5 @@ public class AuthController {
     }
 
     // ─── Helpers ──────────────────────────────────────────────────────────────
-
-    /**
-     * Obtiene la IP real del cliente, considerando proxies y load balancers.
-     * Si viene el header X-Forwarded-For, se usa la primera IP (origen real).
-     */
-    private static String obtenerIp(HttpServletRequest request) {
-        String forwarded = request.getHeader("X-Forwarded-For");
-        if (forwarded != null && !forwarded.isBlank()) {
-            // El header puede contener múltiples IPs separadas por coma: "clientIP, proxy1, proxy2"
-            return forwarded.split(",")[0].trim();
-        }
-        return request.getRemoteAddr();
-    }
+    // (IP extraction delegada a IpExtractor — T046)
 }
