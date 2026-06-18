@@ -46,11 +46,12 @@ dependencies {
 	// Email (bienvenida al crear usuarios)
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 
-	// AOP (para auditoría encadenada automática)
-	implementation 'org.springframework:spring-aspects'
-	implementation 'org.aspectj:aspectjweaver'
+        // Redis (blocklist de tokens revocados + bloqueo de cuentas)
+        implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
-	// Herramientas de desarrollo
+        // AOP (para auditoría encadenada automática)
+        implementation 'org.springframework:spring-aspects'
+        implementation 'org.aspectj:aspectjweaver'	// Herramientas de desarrollo
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	
 	// Testing
