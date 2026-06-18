@@ -5,12 +5,16 @@
 -- Tabla: usuarios (Tabla padre con herencia JOINED)
 -- =====================================================
 CREATE TABLE usuarios (
-    id_usuario BIGINT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    apellido VARCHAR(100) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    INDEX idx_email (email)
+    id_usuario        BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nombre            VARCHAR(100) NOT NULL,
+    apellido          VARCHAR(100) NOT NULL,
+    email             VARCHAR(255) NOT NULL UNIQUE,
+    password          VARCHAR(255) NOT NULL,
+    activo            BOOLEAN NOT NULL DEFAULT TRUE,
+    -- T005 (feature 002): bloqueo de cuenta por intentos fallidos
+    intentos_fallidos TINYINT NOT NULL DEFAULT 0,
+    bloqueado_hasta   DATETIME NULL,
+    INDEX idx_email   (email)
 );
 
 -- =====================================================

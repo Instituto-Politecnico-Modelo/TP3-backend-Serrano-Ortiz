@@ -93,10 +93,15 @@ public class SecurityConfig {
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> {
                 auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                    // ── Rutas públicas de auth ──────────────────────────
                     .requestMatchers("/api/auth/login").permitAll()
-                    .requestMatchers("/api/auth/logout").authenticated()
-                    .requestMatchers("/api/auth/jwt/inspect").authenticated()
+                    .requestMatchers("/api/auth/refresh").permitAll()
                     .requestMatchers("/api/auth/olvide-password").permitAll()
+                    // ── Rutas autenticadas de auth ──────────────────────
+                    .requestMatchers("/api/auth/logout").authenticated()
+                    .requestMatchers("/api/auth/me").authenticated()
+                    .requestMatchers("/api/auth/jwt/inspect").authenticated()
+                    // ── Health check ─────────────────────────────────────
                     .requestMatchers("/api/health").permitAll();
 
                 // Swagger: solo accesible si está habilitado (entorno dev/staging).
@@ -116,7 +121,10 @@ public class SecurityConfig {
                 // H2 Console: nunca público. Solo en desarrollo con rol admin.
                 auth.requestMatchers("/h2-console/**").hasAuthority("ADMINISTRADOR");
 
+                // ── Rutas por rol (T009) ──────────────────────────────
                 auth.requestMatchers("/api/admin/**").hasAuthority("ADMINISTRADOR")
+                    .requestMatchers("/api/docente/**").hasAnyAuthority("DOCENTE", "ADMINISTRADOR")
+                    .requestMatchers("/api/inscripciones/**").hasAnyAuthority("ESTUDIANTE", "ADMINISTRADOR")
                     .anyRequest().authenticated();
             });
 

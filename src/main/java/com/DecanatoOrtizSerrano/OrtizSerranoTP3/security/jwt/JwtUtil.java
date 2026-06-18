@@ -26,7 +26,38 @@ public class JwtUtil {
     
     @Value("${jwt.expiration}")
     private long jwtExpirationMs;
+
+    /** T007 — Refresh token TTL (default 7 días = 604.800.000 ms). */
+    @Value("${jwt.refresh-expiration:604800000}")
+    private long jwtRefreshExpirationMs;
     
+    /**
+     * T007 — Genera un refresh token (TTL 7 días) con claim "type=refresh".
+     */
+    public String generateRefreshToken(String username) {
+        return Jwts.builder()
+                .subject(username)
+                .claim("type", "refresh")
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + jwtRefreshExpirationMs))
+                .signWith(getSigningKey())
+                .compact();
+    }
+
+    /**
+     * T007 — Retorna los milisegundos restantes hasta la expiración del token.
+     * Retorna 0 si el token ya expiró.
+     */
+    public long getRemainingTtl(String token) {
+        try {
+            Date expiration = getExpirationFromToken(token);
+            long remaining = expiration.getTime() - System.currentTimeMillis();
+            return Math.max(0, remaining);
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
     /**
      * Genera un token JWT a partir de la autenticación (sin rol en el payload)
      */
@@ -107,8 +138,8 @@ public class JwtUtil {
                 .build()
                 .parseSignedClaims(authToken);
             return true;
-        } catch (MalformedJwtException e) {
-            logger.error("Token JWT inválido: {}", e.getMessage());
+        } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
+            logger.error("Token JWT inválido o firma incorrecta: {}", e.getMessage());
         } catch (ExpiredJwtException e) {
             logger.error("Token JWT expirado: {}", e.getMessage());
         } catch (UnsupportedJwtException e) {

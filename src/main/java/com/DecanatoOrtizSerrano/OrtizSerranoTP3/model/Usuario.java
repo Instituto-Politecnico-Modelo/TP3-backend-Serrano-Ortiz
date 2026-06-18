@@ -2,6 +2,7 @@ package com.DecanatoOrtizSerrano.OrtizSerranoTP3.model;
 
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(
@@ -35,6 +36,13 @@ public class Usuario {
     
     @Column(name = "activo", nullable = false)
     private Boolean activo = true;
+
+    /** T006 — Bloqueo de cuenta por intentos fallidos (US3 — feature 002) */
+    @Column(name = "intentos_fallidos", nullable = false)
+    private Integer intentosFallidos = 0;
+
+    @Column(name = "bloqueado_hasta")
+    private LocalDateTime bloqueadoHasta;
 
     public Usuario() {
         this.activo = true;
@@ -97,5 +105,26 @@ public class Usuario {
     
     public boolean isActivo() {
         return activo != null && activo;
+    }
+
+    public Integer getIntentosFallidos() {
+        return intentosFallidos;
+    }
+
+    public void setIntentosFallidos(Integer intentosFallidos) {
+        this.intentosFallidos = intentosFallidos != null ? intentosFallidos : 0;
+    }
+
+    public LocalDateTime getBloqueadoHasta() {
+        return bloqueadoHasta;
+    }
+
+    public void setBloqueadoHasta(LocalDateTime bloqueadoHasta) {
+        this.bloqueadoHasta = bloqueadoHasta;
+    }
+
+    /** Retorna true si la cuenta está bloqueada ahora mismo. */
+    public boolean isBloqueado() {
+        return bloqueadoHasta != null && bloqueadoHasta.isAfter(LocalDateTime.now());
     }
 }
