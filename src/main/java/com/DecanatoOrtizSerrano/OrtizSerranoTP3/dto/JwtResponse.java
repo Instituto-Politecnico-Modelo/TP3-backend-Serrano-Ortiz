@@ -6,6 +6,7 @@ package com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto;
 public class JwtResponse {
     
     private String token;
+    private String refreshToken;   // T019 — refresh token (TTL 7 días)
     private String type = "Bearer";
     private Long id;
     private String email;
@@ -21,6 +22,14 @@ public class JwtResponse {
         this.nombre = nombre;
         this.apellido = apellido;
         this.role = role;
+    }
+    
+    public String getRefreshToken() {
+        return refreshToken;
+    }
+
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
     }
     
     public String getToken() {

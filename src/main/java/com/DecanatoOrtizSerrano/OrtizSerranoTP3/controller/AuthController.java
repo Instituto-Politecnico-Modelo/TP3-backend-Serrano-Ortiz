@@ -11,6 +11,7 @@ import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.SolicitudResetPasswor
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.UserDetailsImpl;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.jwt.JwtUtil;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.AuthService;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.UserService;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.RateLimiterService;
 import jakarta.validation.Valid;
@@ -24,11 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
@@ -45,16 +42,10 @@ import java.util.Map;
 public class AuthController {
     
     @Autowired
-    private AuthenticationManager authenticationManager;
-    
-    @Autowired
     private UsuarioRepository usuarioRepository;
     
     @Autowired
     private SolicitudResetPasswordRepository solicitudResetRepository;
-    
-    @Autowired
-    private PasswordEncoder encoder;
     
     @Autowired
     private JwtUtil jwtUtil;
@@ -65,8 +56,11 @@ public class AuthController {
     @Autowired
     private RateLimiterService rateLimiterService;
 
+    @Autowired
+    private AuthService authService;  // T017 — delegar lógica de login
+
     /**
-     * POST /api/auth/login - Autenticar usuario y devolver JWT
+     * POST /api/auth/login — T017: delega en AuthService (bloqueo per-user + tokens).
      */
     @Operation(summary = "Iniciar sesión", description = "Autentica al usuario con email y contraseña. Devuelve un JWT y el rol detectado.")
     @ApiResponses({
@@ -87,48 +81,23 @@ public class AuthController {
                     "Demasiados intentos fallidos. Intentá de nuevo en " + espera + " segundos.", espera));
         }
 
-        Authentication authentication;
         try {
-            authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword())
-            );
-        } catch (org.springframework.security.core.AuthenticationException ex) {
-            // Registrar el fallo para el rate limiter por IP
+            // T017 — delegar en AuthService (bloqueo per-user + intentosFallidos + tokens)
+            JwtResponse jwtResponse = authService.login(loginRequest.getEmail(), loginRequest.getPassword());
+
+            // Login exitoso → limpiar contadores de fallo por IP
+            rateLimiterService.resetLoginFallidos(clientIp);
+            return ResponseEntity.ok(jwtResponse);
+
+        } catch (org.springframework.web.server.ResponseStatusException ex) {
+            if (ex.getStatusCode() == HttpStatus.LOCKED) {
+                return ResponseEntity.status(HttpStatus.LOCKED).body(new MessageResponse(ex.getReason()));
+            }
+            // HTTP 401 — registrar fallo en rate limiter por IP también
             rateLimiterService.registrarLoginFallido(clientIp);
-            // Respuesta genérica — no revelar si el email existe o no
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(new MessageResponse("Credenciales inválidas"));
         }
-
-        // Login exitoso → limpiar contadores de fallo
-        rateLimiterService.resetLoginFallidos(clientIp);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-
-        // Obtener información adicional del usuario
-        Usuario usuario = usuarioRepository.findByEmail(userDetails.getEmail())
-            .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-        
-        // El rol ya viene en las authorities cargadas por UserDetailsServiceImpl
-        String role = userDetails.getAuthorities().iterator().next().getAuthority();
-
-        // Generar JWT con el rol incluido en el payload
-        String jwt = jwtUtil.generateJwtTokenWithRole(authentication, role);
-
-        JwtResponse jwtResponse = new JwtResponse(
-            jwt,
-            userDetails.getId(),
-            userDetails.getEmail(),
-            usuario.getNombre(),
-            usuario.getApellido(),
-            role
-        );
-        // Incluir carrera en la respuesta si el usuario es estudiante
-        if (usuario instanceof com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.Estudiante estudiante) {
-            jwtResponse.setCarrera(estudiante.getCarrera());
-        }
-        return ResponseEntity.ok(jwtResponse);
     }
     
     /**
