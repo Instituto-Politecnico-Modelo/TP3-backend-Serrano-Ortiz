@@ -8,7 +8,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import org.springframework.data.domain.*;
+
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -174,5 +177,82 @@ class HashChainServiceTest {
         r.setTimestampEvento(ts);
         r.setIdUsuario(idUsuario);
         return r;
+    }
+
+    // ─── T033: verificarCadena() — cadena íntegra ─────────────────────────────
+
+    @Test
+    @DisplayName("T033 — verificarCadena() con cadena íntegra → integra=true, errores=[]")
+    void t033_verificarCadena_cadena_integra() {
+        // Construir cadena de 3 registros correctamente encadenados
+        RegistroAuditoria r1 = buildRegistro(HashChainService.GENESIS_HASH,
+                "Inscripcion", 1L, "INSCRIPCION_CONFIRMADA", "Juan Perez inscripto", TS, 10L);
+        r1.setIdRegistro(1L);
+        r1.setHashActual(hashChainService.calcularHash(r1));
+
+        RegistroAuditoria r2 = buildRegistro(r1.getHashActual(),
+                "Inscripcion", 1L, "NOTA_CARGADA", "nota 8 cargada", TS, 20L);
+        r2.setIdRegistro(2L);
+        r2.setHashActual(hashChainService.calcularHash(r2));
+
+        RegistroAuditoria r3 = buildRegistro(r2.getHashActual(),
+                "Usuario", 5L, "LOGIN_FALLIDO", "intento fallido desde 192.168.1.1", TS, null);
+        r3.setIdRegistro(3L);
+        r3.setHashActual(hashChainService.calcularHash(r3));
+
+        Page<RegistroAuditoria> pagina = new PageImpl<>(
+                List.of(r1, r2, r3),
+                PageRequest.of(0, 1000, Sort.by("idRegistro").ascending()),
+                3L);
+        when(auditoriaRepository.findAll(any(Pageable.class))).thenReturn(pagina);
+
+        HashChainService.IntegridadResult result = hashChainService.verificarCadena();
+
+        assertTrue(result.isIntegra(), "Cadena íntegra → integra debe ser true");
+        assertTrue(result.getErrores().isEmpty(), "Cadena íntegra → errores debe estar vacío");
+        assertEquals(3, result.getTotalRegistros(), "Debe haber procesado 3 registros");
+    }
+
+    // ─── T034: verificarCadena() — detecta manipulación directa en BD ─────────
+
+    @Test
+    @DisplayName("T034 — verificarCadena() detecta hash inválido por manipulación directa en BD")
+    void t034_verificarCadena_detecta_manipulacion() {
+        // Registro 1: íntegro
+        RegistroAuditoria r1 = buildRegistro(HashChainService.GENESIS_HASH,
+                "Inscripcion", 1L, "INSCRIPCION_CONFIRMADA", "descripcion original", TS, 10L);
+        r1.setIdRegistro(1L);
+        r1.setHashActual(hashChainService.calcularHash(r1));
+
+        // Registro 2: hash calculado correctamente, luego se adultera la descripción
+        // Simula un UPDATE directo en la BD que cambia un campo sin recalcular el hash
+        RegistroAuditoria r2 = buildRegistro(r1.getHashActual(),
+                "Inscripcion", 1L, "NOTA_CARGADA", "nota original", TS, 20L);
+        r2.setIdRegistro(2L);
+        r2.setHashActual(hashChainService.calcularHash(r2)); // hash correcto antes de adulteración
+        r2.setDescripcion("nota ADULTERADA directamente en la BD");  // manipulación detectada
+
+        Page<RegistroAuditoria> pagina = new PageImpl<>(
+                List.of(r1, r2),
+                PageRequest.of(0, 1000, Sort.by("idRegistro").ascending()),
+                2L);
+        when(auditoriaRepository.findAll(any(Pageable.class))).thenReturn(pagina);
+
+        HashChainService.IntegridadResult result = hashChainService.verificarCadena();
+
+        assertFalse(result.isIntegra(), "Cadena comprometida → integra debe ser false");
+        assertFalse(result.getErrores().isEmpty(), "Debe reportar al menos un error");
+        assertTrue(result.getErrores().stream().anyMatch(e -> e.contains("MANIPULADOS")),
+                "El error debe indicar datos manipulados: " + result.getErrores());
+        assertEquals(2, result.getTotalRegistros(), "Debe haber procesado 2 registros");
+    }
+
+    // ─── T035: performance (requiere DB real) ─────────────────────────────────
+
+    @Test
+    @Disabled("T035 — Requiere DB real con 10.000 registros. Ejecutar en DatabaseVolumeTest con @ActiveProfiles(\"test\").")
+    @DisplayName("T035 — verificarCadena() con 10.000 registros completa en ≤30s (SC-002)")
+    void t035_verificarCadena_performance_10k() {
+        // Cubrir en suite de integración con DB real y datos de volumen
     }
 }
