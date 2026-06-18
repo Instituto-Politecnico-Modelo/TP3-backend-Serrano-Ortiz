@@ -59,6 +59,20 @@ public class JwtUtil {
     }
 
     /**
+     * Helper de tests T021 — Genera un access token con username y rol explícitos,
+     * sin necesitar un objeto Authentication.
+     */
+    public String generateTokenFromUsernameAndRole(String username, String rol) {
+        return Jwts.builder()
+                .subject(username)
+                .claim("rol", rol)
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + jwtExpirationMs))
+                .signWith(getSigningKey())
+                .compact();
+    }
+
+    /**
      * Genera un token JWT a partir de la autenticación (sin rol en el payload)
      */
     public String generateJwtToken(Authentication authentication) {
