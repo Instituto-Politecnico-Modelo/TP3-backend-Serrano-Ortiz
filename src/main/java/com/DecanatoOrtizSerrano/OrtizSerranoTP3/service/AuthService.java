@@ -148,4 +148,66 @@ public class AuthService {
     public int getDuracionBloqueoMinutos() {
         return duracionBloqueoMinutos;
     }
+
+    // ─── Refresh Token ────────────────────────────────────────────────────────
+
+    /**
+     * CHK023b — Renueva el access token usando un refresh token válido.
+     *
+     * Valida:
+     * 1. Firma y expiración del refresh token
+     * 2. Que el claim "type" sea "refresh" (no un access token reutilizado)
+     * 3. Que el usuario exista y esté activo
+     *
+     * @param refreshToken el refresh token JWT
+     * @return JwtResponse con nuevo access token (y el mismo refresh token)
+     */
+    @Transactional(readOnly = true)
+    public JwtResponse refresh(String refreshToken) {
+        // 1. Validar firma + expiración
+        if (!jwtUtil.validateJwtToken(refreshToken)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Refresh token inválido o expirado");
+        }
+
+        // 2. Verificar que es de tipo "refresh"
+        String tokenType = jwtUtil.getTokenType(refreshToken);
+        if (!"refresh".equals(tokenType)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "El token proporcionado no es un refresh token");
+        }
+
+        // 3. Extraer usuario
+        String email = jwtUtil.getUsernameFromJwtToken(refreshToken);
+        Usuario usuario = usuarioRepository.findByEmail(email)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Usuario no encontrado"));
+
+        if (!usuario.isActivo()) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Cuenta desactivada");
+        }
+
+        // 4. Generar nuevo access token
+        String role = "ESTUDIANTE"; // default
+        // Intentar deducir el rol del usuario según su tipo
+        if (usuario.getClass().getSimpleName().equals("Docente")) {
+            role = "DOCENTE";
+        } else if (usuario.getClass().getSimpleName().equals("Estudiante")) {
+            role = "ESTUDIANTE";
+        } else {
+            // Para admin u otros, buscar en la lógica existente
+            role = "ADMINISTRADOR";
+        }
+
+        String newAccessToken = jwtUtil.generateTokenFromUsernameAndRole(email, role);
+
+        // 5. Construir respuesta
+        JwtResponse response = new JwtResponse(
+            newAccessToken,
+            usuario.getIdUsuario(),
+            usuario.getEmail(),
+            usuario.getNombre(),
+            usuario.getApellido(),
+            role
+        );
+        response.setRefreshToken(refreshToken); // mismo refresh token (no rotar)
+        return response;
+    }
 }

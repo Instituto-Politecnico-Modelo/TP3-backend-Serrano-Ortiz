@@ -212,6 +212,22 @@ public class JwtUtil {
     }
 
     /**
+     * Extrae el claim "type" del token (ej. "refresh"). Retorna null si no existe o el token es inválido.
+     */
+    public String getTokenType(String token) {
+        try {
+            return Jwts.parser()
+                    .verifyWith(getSigningKey())
+                    .build()
+                    .parseSignedClaims(token)
+                    .getPayload()
+                    .get("type", String.class);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    /**
      * Determina el motivo de invalidez de un token (para respuesta de inspect)
      */
     public String getInvalidReason(String token) {

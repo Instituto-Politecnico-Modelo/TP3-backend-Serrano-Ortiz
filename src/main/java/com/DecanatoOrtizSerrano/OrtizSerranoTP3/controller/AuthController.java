@@ -99,7 +99,29 @@ public class AuthController {
                 .body(new MessageResponse("Credenciales inválidas"));
         }
     }
-    
+
+    // ─── REFRESH TOKEN ────────────────────────────────────────────────────────
+
+    /**
+     * POST /api/auth/refresh — CHK023b: renueva el access token usando refresh token.
+     * Endpoint público (no requiere JWT — el refresh token se envía en el body).
+     */
+    @Operation(summary = "Renovar token", description = "Genera un nuevo access token usando el refresh token. No requiere autenticación previa.")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Token renovado exitosamente"),
+        @ApiResponse(responseCode = "401", description = "Refresh token inválido o expirado", content = @Content)
+    })
+    @PostMapping("/refresh")
+    public ResponseEntity<?> refreshToken(@Valid @RequestBody com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.RefreshRequest request) {
+        try {
+            JwtResponse response = authService.refresh(request.getRefreshToken());
+            return ResponseEntity.ok(response);
+        } catch (org.springframework.web.server.ResponseStatusException ex) {
+            return ResponseEntity.status(ex.getStatusCode())
+                .body(new MessageResponse(ex.getReason()));
+        }
+    }
+
     /**
      * GET /api/auth/me - Obtener información del usuario autenticado
      */
