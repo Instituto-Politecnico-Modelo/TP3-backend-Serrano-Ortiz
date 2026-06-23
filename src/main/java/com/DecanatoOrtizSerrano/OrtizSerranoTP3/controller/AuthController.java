@@ -87,7 +87,7 @@ public class AuthController {
 
         try {
             // T017 — delegar en AuthService (bloqueo per-user + intentosFallidos + tokens)
-            JwtResponse jwtResponse = authService.login(loginRequest.getEmail(), loginRequest.getPassword());
+            JwtResponse jwtResponse = authService.login(loginRequest.getEmail(), loginRequest.getPassword(), clientIp);
 
             // Login exitoso → limpiar contadores de fallo por IP
             rateLimiterService.resetLoginFallidos(clientIp);

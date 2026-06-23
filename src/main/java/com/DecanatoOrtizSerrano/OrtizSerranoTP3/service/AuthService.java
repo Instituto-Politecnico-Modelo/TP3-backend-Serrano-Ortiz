@@ -55,6 +55,12 @@ public class AuthService {
     @Value("${auth.bloqueo.duracion-minutos:15}")
     private int duracionBloqueoMinutos;
 
+    /** Overload para compatibilidad con tests (sin IP). */
+    @Transactional
+    public JwtResponse login(String email, String password) {
+        return login(email, password, null);
+    }
+
     /**
      * T016 — Intenta autenticar al usuario. Lanza ResponseStatusException con:
      * - HTTP 423 si la cuenta está bloqueada
@@ -62,10 +68,11 @@ public class AuthService {
      *
      * @param email    email del usuario
      * @param password contraseña en texto plano
+     * @param ipOrigen IP del cliente (para auditoría de LOGIN_FALLIDO)
      * @return JwtResponse con access token, refresh token y datos del usuario
      */
     @Transactional
-    public JwtResponse login(String email, String password) {
+    public JwtResponse login(String email, String password, String ipOrigen) {
 
         // ── 1. Verificar bloqueo per-user ─────────────────────────────────────
         Usuario usuario = usuarioRepository.findByEmail(email).orElse(null);
@@ -83,6 +90,18 @@ public class AuthService {
                 new UsernamePasswordAuthenticationToken(email, password)
             );
         } catch (BadCredentialsException | org.springframework.security.core.userdetails.UsernameNotFoundException ex) {
+            // CHK028 — registrar LOGIN_FALLIDO en auditoría (cada intento, con hash encadenado)
+            if (auditoriaService != null) {
+                try {
+                    Long idUsr = usuario != null ? usuario.getIdUsuario() : null;
+                    auditoriaService.registrar(
+                        "USUARIO", idUsr, "LOGIN_FALLIDO",
+                        "Intento de login fallido para " + email,
+                        idUsr, email, ipOrigen
+                    );
+                } catch (Exception ignored) { /* no romper flujo auth */ }
+            }
+
             // Incrementar intentosFallidos si el usuario existe
             if (usuario != null) {
                 int intentos = usuario.getIntentosFallidos() + 1;
@@ -95,7 +114,7 @@ public class AuthService {
                             auditoriaService.registrar(
                                 "USUARIO", usuario.getIdUsuario(), "CUENTA_BLOQUEADA",
                                 "Cuenta bloqueada tras " + intentos + " intentos fallidos",
-                                usuario.getIdUsuario(), email, null
+                                usuario.getIdUsuario(), email, ipOrigen
                             );
                         } catch (Exception ignored) { /* no debe romper el flujo de auth */ }
                     }

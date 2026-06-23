@@ -60,7 +60,7 @@ class AuthControllerLoginTest {
     void t015a_loginExitoso200() throws Exception {
         JwtResponse resp = new JwtResponse("access.tok", 1L, "ana@ipm.edu.ar", "Ana", "Martínez", "ADMINISTRADOR");
         resp.setRefreshToken("refresh.tok");
-        when(authService.login("ana@ipm.edu.ar", "pass123")).thenReturn(resp);
+        when(authService.login(eq("ana@ipm.edu.ar"), eq("pass123"), anyString())).thenReturn(resp);
 
         mockMvc.perform(post("/api/auth/login")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -75,7 +75,7 @@ class AuthControllerLoginTest {
     @Test
     @DisplayName("T015b — credenciales inválidas → HTTP 401 con mensaje genérico")
     void t015b_loginFallido401() throws Exception {
-        when(authService.login(anyString(), anyString()))
+        when(authService.login(anyString(), anyString(), anyString()))
             .thenThrow(new ResponseStatusException(org.springframework.http.HttpStatus.UNAUTHORIZED, "Credenciales inválidas"));
 
         mockMvc.perform(post("/api/auth/login")
@@ -93,13 +93,13 @@ class AuthControllerLoginTest {
                 .content(om.writeValueAsString(Map.of("email", "no-es-email", "password", "pass"))))
             .andExpect(status().isBadRequest());
 
-        verify(authService, never()).login(any(), any());
+        verify(authService, never()).login(any(), any(), any());
     }
 
     @Test
     @DisplayName("T015d — cuenta bloqueada → HTTP 423 con X-Retry-After")
     void t015d_cuentaBloqueada423() throws Exception {
-        when(authService.login(anyString(), anyString()))
+        when(authService.login(anyString(), anyString(), anyString()))
             .thenThrow(new CuentaBloqueadaException(10));
 
         mockMvc.perform(post("/api/auth/login")
@@ -115,7 +115,7 @@ class AuthControllerLoginTest {
     void t015e_tokenConFormatoJwt() throws Exception {
         JwtResponse resp = new JwtResponse("eyJ.payload.sig", 2L, "doc@ipm.edu.ar", "Carlos", "Lopez", "DOCENTE");
         resp.setRefreshToken("eyJ.rpayload.rsig");
-        when(authService.login("doc@ipm.edu.ar", "pass")).thenReturn(resp);
+        when(authService.login(eq("doc@ipm.edu.ar"), eq("pass"), anyString())).thenReturn(resp);
 
         mockMvc.perform(post("/api/auth/login")
                 .contentType(MediaType.APPLICATION_JSON)
