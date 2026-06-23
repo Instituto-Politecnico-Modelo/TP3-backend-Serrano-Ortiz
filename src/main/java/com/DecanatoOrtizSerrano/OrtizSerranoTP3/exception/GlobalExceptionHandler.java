@@ -2,6 +2,7 @@ package com.DecanatoOrtizSerrano.OrtizSerranoTP3.exception;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -37,6 +38,17 @@ public class GlobalExceptionHandler {
         Map<String, String> body = new HashMap<>();
         body.put(MSG_KEY, "Conflicto de concurrencia: otro usuario modificó el recurso al mismo tiempo. Intentá de nuevo.");
         return ResponseEntity.status(HttpStatus.CONFLICT).body(body);
+    }
+
+    /** T027 — Cuenta bloqueada → 423 Locked con header X-Retry-After (minutos restantes). */
+    @ExceptionHandler(CuentaBloqueadaException.class)
+    public ResponseEntity<Map<String, Object>> handleCuentaBloqueada(CuentaBloqueadaException ex) {
+        Map<String, Object> body = new HashMap<>();
+        body.put(MSG_KEY, ex.getMessage());
+        body.put("minutosRestantes", ex.getMinutosRestantes());
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("X-Retry-After", String.valueOf(ex.getMinutosRestantes() * 60));
+        return ResponseEntity.status(HttpStatus.LOCKED).headers(headers).body(body);
     }
 
     /** Errores de validación @Valid. */

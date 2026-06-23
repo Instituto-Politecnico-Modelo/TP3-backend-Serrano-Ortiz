@@ -2,6 +2,8 @@ package com.DecanatoOrtizSerrano.OrtizSerranoTP3;
 
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller.AuthController;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.JwtResponse;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.exception.CuentaBloqueadaException;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.exception.GlobalExceptionHandler;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.AuthService;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.RateLimiterService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -45,7 +47,9 @@ class AuthControllerLoginTest {
 
     @BeforeEach
     void setUp() {
-        mockMvc = MockMvcBuilders.standaloneSetup(authController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(authController)
+            .setControllerAdvice(new GlobalExceptionHandler())
+            .build();
         // IP no bloqueada por defecto — lenient para evitar UnnecessaryStubbingException
         // en tests donde @Valid rechaza el body antes de llegar al controller
         lenient().when(rateLimiterService.loginBloqueado(anyString())).thenReturn(false);
@@ -93,15 +97,17 @@ class AuthControllerLoginTest {
     }
 
     @Test
-    @DisplayName("T015d — cuenta bloqueada → HTTP 423")
+    @DisplayName("T015d — cuenta bloqueada → HTTP 423 con X-Retry-After")
     void t015d_cuentaBloqueada423() throws Exception {
         when(authService.login(anyString(), anyString()))
-            .thenThrow(new ResponseStatusException(org.springframework.http.HttpStatus.LOCKED, "Cuenta bloqueada"));
+            .thenThrow(new CuentaBloqueadaException(10));
 
         mockMvc.perform(post("/api/auth/login")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(om.writeValueAsString(Map.of("email", "u@ipm.edu.ar", "password", "pass"))))
-            .andExpect(status().isLocked());
+            .andExpect(status().isLocked())
+            .andExpect(header().string("X-Retry-After", "600"))
+            .andExpect(jsonPath("$.minutosRestantes").value(10));
     }
 
     @Test

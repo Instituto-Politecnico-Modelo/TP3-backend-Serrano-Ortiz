@@ -1,6 +1,7 @@
 package com.DecanatoOrtizSerrano.OrtizSerranoTP3;
 
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.JwtResponse;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.exception.CuentaBloqueadaException;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.Usuario;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.UserDetailsImpl;
@@ -149,17 +150,15 @@ class AuthServiceLoginTest {
     }
 
     @Test
-    @DisplayName("T014c — cuenta ya bloqueada → HTTP 423 sin intentar autenticar")
-    void t014c_cuentaBloqueadaDevuelve423() {
+    @DisplayName("T014c — cuenta ya bloqueada → CuentaBloqueadaException sin intentar autenticar")
+    void t014c_cuentaBloqueadaLanzaExcepcionEspecifica() {
         Usuario u = usuarioBase();
         u.setBloqueadoHasta(LocalDateTime.now().plusMinutes(10));
         when(usuarioRepository.findByEmail("ana@ipm.edu.ar"))
             .thenReturn(Optional.of(u));
 
         assertThatThrownBy(() -> authService.login("ana@ipm.edu.ar", "pass"))
-            .isInstanceOf(ResponseStatusException.class)
-            .extracting(e -> ((ResponseStatusException) e).getStatusCode().value())
-            .isEqualTo(423);
+            .isInstanceOf(CuentaBloqueadaException.class);
 
         // No se debe intentar autenticar si ya está bloqueada
         verify(authenticationManager, never()).authenticate(any());

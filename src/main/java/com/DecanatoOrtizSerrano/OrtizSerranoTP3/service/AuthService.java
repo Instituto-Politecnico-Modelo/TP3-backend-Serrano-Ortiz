@@ -1,11 +1,13 @@
 package com.DecanatoOrtizSerrano.OrtizSerranoTP3.service;
 
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.exception.CuentaBloqueadaException;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.JwtResponse;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.Estudiante;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.Usuario;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.UsuarioRepository;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.UserDetailsImpl;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.jwt.JwtUtil;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.AuditoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -19,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 /**
  * T016 — Servicio de autenticación (feature 002, US1).
@@ -42,6 +45,10 @@ public class AuthService {
     @Autowired
     private JwtUtil jwtUtil;
 
+    /** T032 — Auditoría de CUENTA_BLOQUEADA (inyección opcional: null-safe si no está disponible). */
+    @Autowired(required = false)
+    private AuditoriaService auditoriaService;
+
     @Value("${auth.bloqueo.max-intentos:5}")
     private int maxIntentos;
 
@@ -64,10 +71,9 @@ public class AuthService {
         Usuario usuario = usuarioRepository.findByEmail(email).orElse(null);
 
         if (usuario != null && usuario.isBloqueado()) {
-            long minutosRestantes = java.time.temporal.ChronoUnit.MINUTES.between(
-                    LocalDateTime.now(), usuario.getBloqueadoHasta());
-            throw new ResponseStatusException(HttpStatus.LOCKED,
-                "Cuenta bloqueada. Intentá de nuevo en " + minutosRestantes + " minutos.");
+            long minutosRestantes = ChronoUnit.MINUTES.between(LocalDateTime.now(), usuario.getBloqueadoHasta());
+            // T027 — el tiempo restante se incluye en el mensaje para que el controller lo exponga en X-Retry-After
+            throw new CuentaBloqueadaException(minutosRestantes);
         }
 
         // ── 2. Autenticar con Spring Security (BCrypt) ────────────────────────
@@ -83,10 +89,19 @@ public class AuthService {
                 usuario.setIntentosFallidos(intentos);
                 if (intentos >= maxIntentos) {
                     usuario.setBloqueadoHasta(LocalDateTime.now().plusMinutes(duracionBloqueoMinutos));
+                    // T032 — registrar CUENTA_BLOQUEADA en auditoría
+                    if (auditoriaService != null) {
+                        try {
+                            auditoriaService.registrar(
+                                "USUARIO", usuario.getIdUsuario(), "CUENTA_BLOQUEADA",
+                                "Cuenta bloqueada tras " + intentos + " intentos fallidos",
+                                usuario.getIdUsuario(), email, null
+                            );
+                        } catch (Exception ignored) { /* no debe romper el flujo de auth */ }
+                    }
                 }
                 usuarioRepository.save(usuario);
             }
-            // Respuesta genérica — no revelar si el email existe o no
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Credenciales inválidas");
         }
 
