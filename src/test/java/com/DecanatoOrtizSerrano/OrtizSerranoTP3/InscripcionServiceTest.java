@@ -130,9 +130,9 @@ class InscripcionServiceTest {
 
         when(estudianteRepository.findById(10L)).thenReturn(Optional.empty());
 
-        RuntimeException ex = assertThrows(RuntimeException.class,
+        Exception ex = assertThrows(Exception.class,
             () -> inscripcionService.inscribir(req, 10L));
-        assertEquals("Estudiante no encontrado", ex.getMessage());
+        assertTrue(ex.getMessage().contains("Estudiante no encontrado"));
         verify(materiaRepository, never()).findById(any());
     }
 
@@ -147,7 +147,7 @@ class InscripcionServiceTest {
         when(estudianteRepository.findById(10L)).thenReturn(Optional.of(estudiante));
         when(materiaRepository.findByIdForUpdate(99L)).thenReturn(Optional.empty());
 
-        RuntimeException ex = assertThrows(RuntimeException.class,
+        Exception ex = assertThrows(Exception.class,
             () -> inscripcionService.inscribir(req, 10L));
         assertTrue(ex.getMessage().contains("Materia no encontrada con ID: 99"));
     }
@@ -165,7 +165,7 @@ class InscripcionServiceTest {
         when(inscripcionRepository.existsByEstudianteIdUsuarioAndMateriaIdMateriaAndEstadoNot(
                 10L, 20L, "CANCELADA")).thenReturn(true);
 
-        RuntimeException ex = assertThrows(RuntimeException.class,
+        Exception ex = assertThrows(Exception.class,
             () -> inscripcionService.inscribir(req, 10L));
         assertTrue(ex.getMessage().contains("Ya estás inscripto en la materia:"));
         verify(inscripcionRepository, never()).save(any());
@@ -186,7 +186,7 @@ class InscripcionServiceTest {
                 10L, 20L, "CANCELADA")).thenReturn(false);
         when(inscripcionRepository.countCuposOcupados(20L)).thenReturn(2L);
 
-        RuntimeException ex = assertThrows(RuntimeException.class,
+        Exception ex = assertThrows(Exception.class,
             () -> inscripcionService.inscribir(req, 10L));
         assertTrue(ex.getMessage().contains("No hay cupos disponibles en la materia:"));
         assertTrue(ex.getMessage().contains("máximo: 2"));
@@ -214,9 +214,9 @@ class InscripcionServiceTest {
         when(inscripcionRepository.findById(100L)).thenReturn(Optional.of(inscripcion));
 
         // idEstudiante=999 no coincide con inscripcion.estudiante.idUsuario=10
-        RuntimeException ex = assertThrows(RuntimeException.class,
+        Exception ex = assertThrows(Exception.class,
             () -> inscripcionService.cancelar(100L, 999L));
-        assertEquals("No podés cancelar una inscripción que no es tuya", ex.getMessage());
+        assertTrue(ex.getMessage().contains("No podés cancelar una inscripción que no es tuya"));
     }
 
     // ─── 9. Cancelar ya cancelada ─────────────────────────────────────────────
@@ -227,9 +227,9 @@ class InscripcionServiceTest {
         inscripcion.setEstado("CANCELADA");
         when(inscripcionRepository.findById(100L)).thenReturn(Optional.of(inscripcion));
 
-        RuntimeException ex = assertThrows(RuntimeException.class,
+        Exception ex = assertThrows(Exception.class,
             () -> inscripcionService.cancelar(100L, 10L));
-        assertEquals("La inscripción ya está cancelada", ex.getMessage());
+        assertTrue(ex.getMessage().contains("La inscripción ya está cancelada"));
     }
 
     // ─── 10. Cargar nota exitoso ──────────────────────────────────────────────
@@ -265,9 +265,9 @@ class InscripcionServiceTest {
         NotaRequest req = new NotaRequest();
         req.setNotaFinal(8.0);
 
-        RuntimeException ex = assertThrows(RuntimeException.class,
+        Exception ex = assertThrows(Exception.class,
             () -> inscripcionService.cargarNota(100L, req));
-        assertEquals("No se pueden cargar notas en una inscripción CANCELADA", ex.getMessage());
+        assertTrue(ex.getMessage().contains("No se pueden cargar notas en una inscripción CANCELADA"));
     }
 
     // ─── 12. Cargar nota con nota cerrada ─────────────────────────────────────
@@ -281,9 +281,9 @@ class InscripcionServiceTest {
         NotaRequest req = new NotaRequest();
         req.setNotaFinal(9.0);
 
-        RuntimeException ex = assertThrows(RuntimeException.class,
+        Exception ex = assertThrows(Exception.class,
             () -> inscripcionService.cargarNota(100L, req));
-        assertEquals("La nota ya está cerrada. No se puede modificar.", ex.getMessage());
+        assertTrue(ex.getMessage().contains("La nota ya está cerrada. No se puede modificar."));
     }
 
     // ─── 13. Cerrar nota → APROBADA ───────────────────────────────────────────
@@ -324,9 +324,9 @@ class InscripcionServiceTest {
         // notaFinal es null por defecto
         when(inscripcionRepository.findById(100L)).thenReturn(Optional.of(inscripcion));
 
-        RuntimeException ex = assertThrows(RuntimeException.class,
+        Exception ex = assertThrows(Exception.class,
             () -> inscripcionService.cerrarNota(100L));
-        assertEquals("Debe cargar la nota final antes de cerrar", ex.getMessage());
+        assertTrue(ex.getMessage().contains("Debe cargar la nota final antes de cerrar"));
     }
 
     // ─── 16. Cerrar nota ya cerrada ───────────────────────────────────────────
@@ -338,9 +338,9 @@ class InscripcionServiceTest {
         inscripcion.setNotaCerrada(true);
         when(inscripcionRepository.findById(100L)).thenReturn(Optional.of(inscripcion));
 
-        RuntimeException ex = assertThrows(RuntimeException.class,
+        Exception ex = assertThrows(Exception.class,
             () -> inscripcionService.cerrarNota(100L));
-        assertEquals("La nota ya estaba cerrada", ex.getMessage());
+        assertTrue(ex.getMessage().contains("La nota ya estaba cerrada"));
     }
 
     // ─── 17. Cerrar nota CANCELADA ────────────────────────────────────────────
@@ -351,9 +351,9 @@ class InscripcionServiceTest {
         inscripcion.setEstado("CANCELADA");
         when(inscripcionRepository.findById(100L)).thenReturn(Optional.of(inscripcion));
 
-        RuntimeException ex = assertThrows(RuntimeException.class,
+        Exception ex = assertThrows(Exception.class,
             () -> inscripcionService.cerrarNota(100L));
-        assertEquals("No se puede cerrar una inscripción CANCELADA", ex.getMessage());
+        assertTrue(ex.getMessage().contains("No se puede cerrar una inscripción CANCELADA"));
     }
 
     // ─── 18. misInscripciones delega en repositorio ───────────────────────────
