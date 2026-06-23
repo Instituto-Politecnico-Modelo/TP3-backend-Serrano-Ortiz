@@ -173,4 +173,45 @@ public class InscripcionController {
             .toList();
         return ResponseEntity.ok(conNota);
     }
+
+    /**
+     * DELETE /api/inscripciones/{id}/cola
+     * El estudiante abandona la cola de espera voluntariamente (solo ENCOLADAS).
+     */
+    @Operation(summary = "Salir de la cola", description = "Abandona la cola de espera. Solo para inscripciones ENCOLADAS.")
+    @DeleteMapping("/{id}/cola")
+    public ResponseEntity<?> salirDeCola(@PathVariable Long id, Authentication authentication) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        try {
+            colaInscripcionService.abandonarCola(id, userDetails.getId());
+            return ResponseEntity.noContent().build();
+        } catch (org.springframework.web.server.ResponseStatusException ex) {
+            return ResponseEntity.status(ex.getStatusCode()).body(new MessageResponse(ex.getReason()));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
+        }
+    }
+
+    /**
+     * GET /api/inscripciones/{id}/estado
+     * Consulta el estado de una inscripción (posición en cola si ENCOLADO).
+     */
+    @Operation(summary = "Estado de inscripción", description = "Retorna estado y posición en cola si aplica.")
+    @GetMapping("/{id}/estado")
+    public ResponseEntity<?> estadoInscripcion(@PathVariable Long id, Authentication authentication) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        try {
+            Inscripcion insc = inscripcionService.obtenerPorId(id);
+            // Verificar ownership
+            if (!insc.getEstudiante().getIdUsuario().equals(userDetails.getId())) {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(new MessageResponse("No podés consultar inscripciones de otro estudiante"));
+            }
+            java.util.Map<String, Object> estado = new java.util.LinkedHashMap<>();
+            estado.put("status", insc.getEstado());
+            return ResponseEntity.ok(estado);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageResponse(e.getMessage()));
+        }
+    }
 }

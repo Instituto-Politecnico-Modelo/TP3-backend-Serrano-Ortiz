@@ -3,6 +3,7 @@ package com.DecanatoOrtizSerrano.OrtizSerranoTP3.controller;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.MessageResponse;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.dto.NotaRequest;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.Inscripcion;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.UserDetailsImpl;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.InscripcionService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -10,6 +11,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -68,10 +70,16 @@ public class DocenteController {
     @PutMapping("/inscripciones/{id}/nota")
     public ResponseEntity<?> cargarNota(
             @PathVariable Long id,
-            @Valid @RequestBody NotaRequest request) {
+            @Valid @RequestBody NotaRequest request,
+            Authentication authentication) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        String emailDocente = userDetails.getEmail();
+        String ipOrigen = null; // se podría extraer del request si se inyecta HttpServletRequest
         try {
-            Inscripcion inscripcion = inscripcionService.cargarNota(id, request);
+            Inscripcion inscripcion = inscripcionService.cargarNota(id, request, emailDocente, ipOrigen);
             return ResponseEntity.ok(inscripcion);
+        } catch (org.springframework.web.server.ResponseStatusException ex) {
+            return ResponseEntity.status(ex.getStatusCode()).body(new MessageResponse(ex.getReason()));
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
         }
@@ -88,10 +96,15 @@ public class DocenteController {
     @PostMapping("/inscripciones/{id}/nota")
     public ResponseEntity<?> cargarNotaPost(
             @PathVariable Long id,
-            @Valid @RequestBody NotaRequest request) {
+            @Valid @RequestBody NotaRequest request,
+            Authentication authentication) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        String emailDocente = userDetails.getEmail();
         try {
-            Inscripcion inscripcion = inscripcionService.cargarNota(id, request);
+            Inscripcion inscripcion = inscripcionService.cargarNota(id, request, emailDocente, null);
             return ResponseEntity.ok(inscripcion);
+        } catch (org.springframework.web.server.ResponseStatusException ex) {
+            return ResponseEntity.status(ex.getStatusCode()).body(new MessageResponse(ex.getReason()));
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
         }
@@ -107,10 +120,14 @@ public class DocenteController {
                     + "notaFinal >= 6 → APROBADA | notaFinal < 6 → DESAPROBADA."
     )
     @PatchMapping("/inscripciones/{id}/cerrar")
-    public ResponseEntity<?> cerrarNota(@PathVariable Long id) {
+    public ResponseEntity<?> cerrarNota(@PathVariable Long id, Authentication authentication) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        String emailDocente = userDetails.getEmail();
         try {
-            Inscripcion inscripcion = inscripcionService.cerrarNota(id);
+            Inscripcion inscripcion = inscripcionService.cerrarNota(id, emailDocente, null);
             return ResponseEntity.ok(inscripcion);
+        } catch (org.springframework.web.server.ResponseStatusException ex) {
+            return ResponseEntity.status(ex.getStatusCode()).body(new MessageResponse(ex.getReason()));
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage()));
         }

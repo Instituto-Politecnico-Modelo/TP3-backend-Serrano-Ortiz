@@ -3,6 +3,9 @@ package com.DecanatoOrtizSerrano.OrtizSerranoTP3.service;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.model.RegistroAuditoria;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.repository.AuditoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -82,7 +85,40 @@ public class AuditoriaService {
         return registrar(entidad, idEntidad, accion, descripcion, idUsuario, emailUsuario, null);
     }
 
-    // ─── Consultas ────────────────────────────────────────────────────────────
+    // ─── Consultas (paginadas) ─────────────────────────────────────────────────
+
+    private static final int MAX_PAGE_SIZE = 100;
+
+    private Pageable sanitize(int page, int size) {
+        int s = Math.max(1, Math.min(size, MAX_PAGE_SIZE));
+        return PageRequest.of(Math.max(0, page), s);
+    }
+
+    public Page<RegistroAuditoria> listarTodosPaginado(int page, int size) {
+        return auditoriaRepository.findAllByOrderByIdRegistroAsc(sanitize(page, size));
+    }
+
+    public Page<RegistroAuditoria> porEntidadPaginado(String entidad, int page, int size) {
+        return auditoriaRepository.findByEntidadOrderByIdRegistroAsc(entidad, sanitize(page, size));
+    }
+
+    public Page<RegistroAuditoria> porEntidadYIdPaginado(String entidad, Long idEntidad, int page, int size) {
+        return auditoriaRepository.findByEntidadAndIdEntidadOrderByIdRegistroAsc(entidad, idEntidad, sanitize(page, size));
+    }
+
+    public Page<RegistroAuditoria> porUsuarioPaginado(Long idUsuario, int page, int size) {
+        return auditoriaRepository.findByIdUsuarioOrderByIdRegistroAsc(idUsuario, sanitize(page, size));
+    }
+
+    public Page<RegistroAuditoria> porAccionPaginado(String accion, int page, int size) {
+        return auditoriaRepository.findByAccionOrderByIdRegistroAsc(accion, sanitize(page, size));
+    }
+
+    public Page<RegistroAuditoria> porRangoFechaPaginado(LocalDateTime desde, LocalDateTime hasta, int page, int size) {
+        return auditoriaRepository.findByTimestampEventoBetweenOrderByIdRegistroAsc(desde, hasta, sanitize(page, size));
+    }
+
+    // ─── Consultas (sin paginación — para verificación e internos) ────────────
 
     public List<RegistroAuditoria> listarTodos() {
         return auditoriaRepository.findAllByOrderByIdRegistroAsc();

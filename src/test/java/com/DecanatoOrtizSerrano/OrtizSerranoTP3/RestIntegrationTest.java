@@ -310,8 +310,10 @@ class RestIntegrationTest {
         mockMvc.perform(get("/api/admin/auditoria")
                 .header("Authorization", authHeader(adminToken)))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$").isArray())
-            .andExpect(jsonPath("$", hasSize(greaterThan(0))));
+            .andExpect(jsonPath("$.content").isArray())
+            .andExpect(jsonPath("$.content", hasSize(greaterThan(0))))
+            .andExpect(jsonPath("$.totalElements").isNumber())
+            .andExpect(jsonPath("$.totalPages").isNumber());
     }
 
     // ─── 15. Integridad de auditoría → cadena íntegra ────────────────────────
