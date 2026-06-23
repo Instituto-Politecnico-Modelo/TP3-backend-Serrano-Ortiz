@@ -197,11 +197,11 @@ class PerfilEditTest {
 
         String nuevaPass = "NuevaClave99";
 
-        // Cambiamos la contraseña
+        // Cambiamos la contraseña (requiere passwordActual para validación)
         mockMvc.perform(put("/api/auth/update")
                 .header("Authorization", auth(userToken))
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(json(Map.of("password", nuevaPass))))
+                .content(json(Map.of("password", nuevaPass, "passwordActual", USER_PASS))))
             .andExpect(status().isOk());
 
         // Verificamos que la contraseña vieja ya NO funciona

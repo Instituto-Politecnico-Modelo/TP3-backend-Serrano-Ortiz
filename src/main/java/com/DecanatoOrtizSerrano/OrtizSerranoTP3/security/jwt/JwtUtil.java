@@ -81,13 +81,21 @@ public class JwtUtil {
     }
 
     /**
-     * Genera un token JWT incluyendo el rol del usuario como claim "rol"
+     * Genera un token JWT incluyendo el rol y el ID del usuario como claims.
      */
     public String generateJwtTokenWithRole(Authentication authentication, String rol) {
         UserDetails userPrincipal = (UserDetails) authentication.getPrincipal();
-        return Jwts.builder()
+        Long userId = null;
+        if (userPrincipal instanceof com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.UserDetailsImpl udi) {
+            userId = udi.getId();
+        }
+        var builder = Jwts.builder()
                 .subject(userPrincipal.getUsername())
-                .claim("rol", rol)
+                .claim("rol", rol);
+        if (userId != null) {
+            builder.claim("id", userId);
+        }
+        return builder
                 .issuedAt(new Date())
                 .expiration(new Date((new Date()).getTime() + jwtExpirationMs))
                 .signWith(getSigningKey())
@@ -117,6 +125,24 @@ public class JwtUtil {
                     .parseSignedClaims(token)
                     .getPayload()
                     .get("rol", String.class);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Extrae el claim "id" (userId) del token JWT. Retorna null si no existe.
+     */
+    public Long getIdFromToken(String token) {
+        try {
+            Object id = Jwts.parser()
+                    .verifyWith(getSigningKey())
+                    .build()
+                    .parseSignedClaims(token)
+                    .getPayload()
+                    .get("id");
+            if (id instanceof Number n) return n.longValue();
+            return null;
         } catch (Exception e) {
             return null;
         }

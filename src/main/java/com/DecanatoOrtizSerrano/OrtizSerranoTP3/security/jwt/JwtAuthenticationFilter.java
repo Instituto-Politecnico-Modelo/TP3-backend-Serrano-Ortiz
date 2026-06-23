@@ -14,6 +14,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.UserDetailsImpl;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.TokenBlocklistService;
 import java.io.IOException;
 import java.util.List;
@@ -53,14 +54,20 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                 String username = jwtUtil.getUsernameFromJwtToken(jwt);
                 String rol      = jwtUtil.getRolFromToken(jwt);
+                Long   userId   = jwtUtil.getIdFromToken(jwt);
 
                 // Construir autoridades desde el claim "rol" del JWT — sin tocar la BD.
                 List<SimpleGrantedAuthority> authorities = rol != null
                         ? List.of(new SimpleGrantedAuthority(rol))
                         : List.of();
 
+                // Construir UserDetailsImpl para que los controllers puedan hacer cast correctamente
+                UserDetailsImpl userDetails = new UserDetailsImpl(
+                        userId != null ? userId : 0L,
+                        username, username, null, authorities);
+
                 UsernamePasswordAuthenticationToken authentication =
-                    new UsernamePasswordAuthenticationToken(username, null, authorities);
+                    new UsernamePasswordAuthenticationToken(userDetails, null, authorities);
 
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authentication);

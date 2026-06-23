@@ -144,6 +144,7 @@ public class AuthController {
         perfil.put("apellido",   usuario.getApellido());
         perfil.put("email",      usuario.getEmail());
         perfil.put("rol",        userDetails.getAuthorities().iterator().next().getAuthority());
+        perfil.put("activo",     usuario.isActivo());
         return ResponseEntity.ok(perfil);
     }
     
