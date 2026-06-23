@@ -14,6 +14,7 @@ import com.DecanatoOrtizSerrano.OrtizSerranoTP3.security.jwt.JwtUtil;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.AuthService;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.UserService;
 import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.RateLimiterService;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.TokenBlocklistService;
 import jakarta.validation.Valid;
 import jakarta.servlet.http.HttpServletRequest;
 import io.swagger.v3.oas.annotations.Operation;
@@ -58,6 +59,9 @@ public class AuthController {
 
     @Autowired
     private AuthService authService;  // T017 — delegar lógica de login
+
+    @Autowired
+    private TokenBlocklistService tokenBlocklistService;  // CHK023d — revocación de tokens
 
     /**
      * POST /api/auth/login — T017: delega en AuthService (bloqueo per-user + tokens).
@@ -215,14 +219,21 @@ public class AuthController {
     // ─── LOGOUT ───────────────────────────────────────────────────────────────
 
     /**
-     * POST /api/auth/logout
-     * El logout es responsabilidad del cliente: debe eliminar el token almacenado.
-     * Este endpoint existe por convención REST y devuelve 200 como confirmación.
+     * POST /api/auth/logout — CHK023d: revoca el access token via Redis blocklist.
+     * El frontend DEBE llamar a este endpoint ANTES de eliminar el token de localStorage.
+     * El token se agrega a la blocklist con TTL = tiempo restante hasta su expiración natural.
      */
-    @Operation(summary = "Cerrar sesión", description = "El cliente debe eliminar el token JWT. Este endpoint confirma la acción con 200.")
+    @Operation(summary = "Cerrar sesión", description = "Revoca el access token actual (blocklist Redis). Retorna 204.")
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/logout")
-    public ResponseEntity<?> logout() {
-        return ResponseEntity.ok(new MessageResponse("Sesión cerrada correctamente"));
+    public ResponseEntity<?> logout(HttpServletRequest request) {
+        String headerAuth = request.getHeader("Authorization");
+        if (headerAuth != null && headerAuth.startsWith("Bearer ")) {
+            String token = headerAuth.substring(7);
+            long ttlMs = jwtUtil.getRemainingTtl(token);
+            tokenBlocklistService.revocar(token, ttlMs);
+        }
+        return ResponseEntity.noContent().build();
     }
 
     // ─── JWT INSPECT ──────────────────────────────────────────────────────────

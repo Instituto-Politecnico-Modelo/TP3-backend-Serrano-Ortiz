@@ -14,6 +14,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
+import com.DecanatoOrtizSerrano.OrtizSerranoTP3.service.TokenBlocklistService;
 import java.io.IOException;
 import java.util.List;
 
@@ -28,6 +29,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private JwtUtil jwtUtil;
 
+    /** CHK023f — Consulta la blocklist para tokens revocados por logout. */
+    @Autowired(required = false)
+    private TokenBlocklistService tokenBlocklistService;
+
     // ⚠️  T008: NO se inyecta UserDetailsService — la validación es puramente stateless.
     // La identidad y el rol se leen directamente del JWT; cero queries a MySQL por request.
     
@@ -39,6 +44,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             String jwt = parseJwt(request);
             
             if (jwt != null && jwtUtil.validateJwtToken(jwt)) {
+                // CHK023f — Rechazar tokens revocados por logout
+                if (tokenBlocklistService != null && tokenBlocklistService.estaRevocado(jwt)) {
+                    logger.debug("Token revocado (blocklist) — rechazado");
+                    filterChain.doFilter(request, response);
+                    return;
+                }
+
                 String username = jwtUtil.getUsernameFromJwtToken(jwt);
                 String rol      = jwtUtil.getRolFromToken(jwt);
 

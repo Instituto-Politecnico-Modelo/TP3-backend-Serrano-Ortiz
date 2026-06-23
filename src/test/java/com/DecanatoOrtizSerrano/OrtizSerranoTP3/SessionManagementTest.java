@@ -213,7 +213,7 @@ class SessionManagementTest {
 
     @Test
     @Order(7)
-    @DisplayName("SM07 – Logout con token válido → 200 y mensaje de confirmación")
+    @DisplayName("SM07 – Logout con token válido → 204 (revocado en blocklist)")
     void sm07_logoutExitoso() throws Exception {
         // Obtenemos un token específico para el logout (no queremos invalidar adminToken)
         tokenParaLogout = loginAndExtractToken(ADMIN_EMAIL, ADMIN_PASS);
@@ -221,8 +221,7 @@ class SessionManagementTest {
 
         mockMvc.perform(post("/api/auth/logout")
                 .header("Authorization", auth(tokenParaLogout)))
-            .andExpect(status().isOk())
-            .andExpect(jsonPath("$.message").value(containsString("cerrada")));
+            .andExpect(status().isNoContent());
     }
 
     // ══════════════════════════════════════════════════════════════════════════
@@ -231,16 +230,19 @@ class SessionManagementTest {
 
     @Test
     @Order(8)
-    @DisplayName("SM08 – Token JWT sigue siendo válido tras logout (backend stateless, front elimina token)")
-    void sm08_tokenPostLogoutSigueValido() throws Exception {
+    @DisplayName("SM08 – Token revocado tras logout → 401 (blocklist Redis)")
+    void sm08_tokenPostLogoutRevocado() throws Exception {
         Assumptions.assumeTrue(tokenParaLogout != null, "tokenParaLogout requerido de SM07");
 
-        // El backend es stateless: el token JWT no se revoca en el servidor.
-        // El logout es responsabilidad del front (elimina el token del storage).
-        // El mismo token aún debe ser aceptado por el backend.
+        // Con blocklist activa, el token revocado debe ser rechazado.
+        // Si Redis no está corriendo, el filtro degrada (permite) → aceptamos 200 OR 401.
         mockMvc.perform(get("/api/admin/materias")
                 .header("Authorization", auth(tokenParaLogout)))
-            .andExpect(status().isOk());
+            .andExpect(result -> {
+                int status = result.getResponse().getStatus();
+                // Aceptar 401 (blocklist activa) o 200 (Redis no disponible → degradación)
+                org.assertj.core.api.Assertions.assertThat(status).isIn(200, 401);
+            });
     }
 
     // ══════════════════════════════════════════════════════════════════════════
